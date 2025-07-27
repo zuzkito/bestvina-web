@@ -8,7 +8,6 @@ definePageMeta({
 	<UPage>
 		<UPageHeader
 			title="O soustředění"
-			description="nějaké další informace..."
 		/>
 		<template #left />
 
