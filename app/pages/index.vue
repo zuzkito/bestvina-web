@@ -130,13 +130,15 @@ const scrollDownALittle = () => {
 		<UPageHero
 			orientation="horizontal"
 			:ui="{
-				container: 'pb-0 sm:pb-0 lg:py-0 min-h-[var(--my-full-heigh)]',
+root: 'mt-0',
+				container: 'pb-0 sm:pb-0 py-12 gap-12 lg:py-0 lg:min-h-[var(--my-page-height)] lg:grid-cols-2',
 				description: 'text-balance',
-				headline: 'lg:mt-0',
+				headline: 'mt-0',
 			}"
 		>
 			<template #headline>
 				<div class="flex flex-col gap-4">
+<!-- prihlasky -->
 					<NuxtLink
 						to="/"
 					>
@@ -150,7 +152,8 @@ const scrollDownALittle = () => {
 						</UBadge>
 					</NuxtLink>
 
-					<NuxtLink
+<!-- fotogalerie -->
+					<!-- <NuxtLink
 						to="/"
 					>
 						<UBadge
@@ -161,7 +164,21 @@ const scrollDownALittle = () => {
 						>
 							Fotogalerie byla aktualizována!
 						</UBadge>
-					</NuxtLink>
+					</NuxtLink> -->
+
+					<!-- shit -->
+					<!-- <NuxtLink
+						to="/"
+					>
+						<UBadge
+							trailing-icon="i-lucide-arrow-right"
+							size="md"
+							variant="outline"
+							color="error"
+						>
+							Něco se po💩!
+						</UBadge>
+					</NuxtLink> -->
 				</div>
 			</template>
 			<template #title>
@@ -210,7 +227,7 @@ const scrollDownALittle = () => {
 		<UPageSection
 			:features="features"
 			:ui="{
-				root: 'min-h-[var(--my-full-heigh)]',
+				root: 'min-h-[var(--my-page-height)]',
 			}"
 		>
 			<template

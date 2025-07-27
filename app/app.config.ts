@@ -6,5 +6,16 @@ export default defineAppConfig({
 			tertiary: "yellow",
 			neutral: "zinc",
 		},
+		container: {
+			base: "w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8",
+		},
+		toaster: {
+			position: "bottom-right" as const,
+			expand: true,
+			duration: 5000,
+		},
+		theme: {
+			radius: 0.5,
+		},
 	},
 });
