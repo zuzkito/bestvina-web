@@ -1,52 +1,28 @@
 <script setup lang="ts">
-const items = computed<NavigationMenuItem[]>(() => [{
-	label: "O soustředění",
-	icon: "i-lucide-book-open",
-	to: "/informace",
-}, {
-	label: "Lidé",
-	icon: "i-lucide-book-open",
-	to: "/lide",
-}, {
-	label: "Aktuální ročník",
-	icon: "i-lucide-database",
-	children: [
-		{
-			label: "Informace",
-			icon: "i-lucide-file-text",
-			description: "Define shortcuts for your application.",
-			to: "/test",
-		},
-		{
-			label: "Registrace",
-			description: "Fully styled and customizable components for Nuxt.",
-			icon: "i-lucide-house",
-			to: "/test",
-		},
-	],
-}, {
-	label: "Kronika",
-	icon: "i-lucide-database",
-	to: "/kronika/",
-}, {
-	label: "Kontakt",
-	icon: "i-lucide-box",
-	to: "/kontakt",
-	children: [
-		{
-			label: "Link",
-			icon: "i-lucide-file-text",
-			description: "Use NuxtLink with superpowers.",
-			to: "/kontakt#",
-		},
-		{
-			label: "Link",
-			icon: "i-lucide-file-text",
-			description: "Use NuxtLink with superpowers.",
-			to: "/test",
-		},
-	],
-},
+import type { NavigationMenuItem } from "@nuxt/ui";
+
+const items = computed<NavigationMenuItem[]>(() => [
+	{
+		label: "O soustředění",
+		icon: "i-mdi-campfire",
+		to: "/informace",
+	}, {
+		label: "Aktuální ročník",
+		icon: "i-mdi-calendar-star",
+		to: "/2025",
+	}, {
+		label: "Kronika",
+		icon: "i-mdi-book-open-page-variant-outline",
+		to: "/kronika/",
+	}, {
+		label: "Lidé",
+		icon: "i-mdi-account-group",
+		to: "/lide",
+	}, {
+		label: "Kontakt",
+		icon: "i-lucide-box",
+		to: "/kontakt",
+	},
 ]);
 </script>
 
