@@ -6,9 +6,14 @@ definePageMeta({
 
 <template>
 	<UPage>
+		<template #left>
+			<UPageAside />
+			1
+		</template>
+
 		<UPageHeader
-			headline="Japonsko"
-			title="Ročník 2025"
+			headline="Citrón"
+			title="Ročník 2024"
 		/>
 
 		<UPageBody>
