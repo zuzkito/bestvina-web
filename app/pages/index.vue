@@ -20,13 +20,13 @@ const features = ref([
 		title: "Icons",
 		description: "Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.",
 		icon: "i-lucide-smile",
-		to: "/getting-started/icons",
+		to: "/",
 	},
 	{
 		title: "Fonts",
 		description: "Nuxt UI integrates with Nuxt Fonts to provide plug-and-play font optimization.",
 		icon: "i-lucide-a-large-small",
-		to: "/getting-started/fonts",
+		to: "/",
 	},
 	{
 		title: "Color Mode",
@@ -130,7 +130,7 @@ const scrollDownALittle = () => {
 		<UPageHero
 			orientation="horizontal"
 			:ui="{
-root: 'mt-0',
+				root: 'mt-0',
 				container: 'pb-0 sm:pb-0 py-12 gap-12 lg:py-0 lg:min-h-[var(--my-page-height)] lg:grid-cols-2',
 				description: 'text-balance',
 				headline: 'mt-0',
@@ -138,7 +138,7 @@ root: 'mt-0',
 		>
 			<template #headline>
 				<div class="flex flex-col gap-4">
-<!-- prihlasky -->
+					<!-- prihlasky -->
 					<NuxtLink
 						to="/"
 					>
@@ -152,7 +152,7 @@ root: 'mt-0',
 						</UBadge>
 					</NuxtLink>
 
-<!-- fotogalerie -->
+					<!-- fotogalerie -->
 					<!-- <NuxtLink
 						to="/"
 					>
@@ -198,11 +198,11 @@ root: 'mt-0',
 			</template>
 
 			<div class="h-[40vh] w-full lg:min-h-[var(--my-page-height)] lg:w-full relative overflow-hidden lg:col-span-[1]">
-			<UPageMarquee
-								pause-on-hover
-:overlay="false"
-				:ui="{
-					root: '[--gap:--spacing(8)] [--duration:40s] border-default absolute h-full lg:h-auto w-full left-0 border-y md:border-x md:border-y-0 lg:w-full lg:flex-col',
+				<UPageMarquee
+					pause-on-hover
+					:overlay="false"
+					:ui="{
+						root: '[--gap:--spacing(8)] [--duration:40s] border-default absolute h-full lg:h-auto w-full left-0 border-y md:border-x md:border-y-0 lg:w-full lg:flex-col',
 						content: 'h-full lg:min-w-full flex-row lg:flex-col lg:animate-[marquee-vertical_var(--duration)_linear_infinite] lg:rtl:animate-[marquee-vertical-rtl_var(--duration)_linear_infinite]',
 					}"
 				>
@@ -217,10 +217,10 @@ root: 'mt-0',
 							:src="component.path"
 							loading="lazy"
 							class="h-full lg:w-full lg:hover:scale-105 transition-transform"
-				/>
-</a>
-			</UPageMarquee>
-</div>
+						/>
+					</a>
+				</UPageMarquee>
+			</div>
 		</UPageHero>
 
 		<a id="more" />
