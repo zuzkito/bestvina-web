@@ -9,8 +9,7 @@ const overlay = useOverlay();
 const modal = overlay.create(LandingImageModal);
 
 async function openImageModal(path: string) {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const instance = modal.open({
+	modal.open({
 		imgPath: path,
 	});
 }
