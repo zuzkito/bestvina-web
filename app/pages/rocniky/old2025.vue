@@ -7,7 +7,7 @@ definePageMeta({
 <template>
 	<UPage>
 		<UPageHeader
-			headline="Japonsko"
+			headline="Japonskoooooo"
 			title="Ročník 2025"
 		/>
 

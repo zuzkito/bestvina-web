@@ -6,10 +6,9 @@ definePageMeta({
 
 <template>
 	<UPage>
-		<template #left>
+		<!-- <template #left>
 			<UPageAside />
-			1
-		</template>
+		</template> -->
 
 		<UPageHeader
 			headline="Citrón"

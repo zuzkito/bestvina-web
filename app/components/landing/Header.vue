@@ -9,11 +9,11 @@ const items = computed<NavigationMenuItem[]>(() => [
 	}, {
 		label: "Aktuální ročník",
 		icon: "i-mdi-calendar-star",
-		to: "/2025",
+		to: "/rocniky/2025",
 	}, {
 		label: "Kronika",
 		icon: "i-mdi-book-open-page-variant-outline",
-		to: "/kronika/",
+		to: "/kronika",
 	}, {
 		label: "Lidé",
 		icon: "i-mdi-account-group",
