@@ -1,4 +1,20 @@
 <script setup lang="ts">
+import { LandingImageModal } from "#components";
+
+definePageMeta({
+	layout: "landing",
+});
+
+const overlay = useOverlay();
+const modal = overlay.create(LandingImageModal);
+
+async function openImageModal(path: string) {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const instance = modal.open({
+		imgPath: path,
+	});
+}
+
 const features = ref([
 	{
 		title: "Icons",
@@ -16,7 +32,90 @@ const features = ref([
 		title: "Color Mode",
 		description: "Nuxt UI integrates with Nuxt Color Mode to switch between light and dark.",
 		icon: "i-lucide-sun-moon",
-		to: "/getting-started/color-mode",
+		to: "/",
+	},
+]);
+
+const components = ref([
+	{
+		title: "title",
+		path: "/imgs/cat1.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat2.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat3.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat4.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat1.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat2.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat3.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat4.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat1.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat2.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat3.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat4.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat1.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat2.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat3.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat4.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat1.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat2.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat3.jpg",
+	},
+	{
+		title: "title",
+		path: "/imgs/cat4.jpg",
 	},
 ]);
 
@@ -80,33 +179,31 @@ const scrollDownALittle = () => {
 					@click="scrollDownALittle"
 				/>
 			</template>
+
+			<div class="h-[40vh] w-full lg:min-h-[var(--my-page-height)] lg:w-full relative overflow-hidden lg:col-span-[1]">
 			<UPageMarquee
-				orientation="vertical"
-				pause-on-hover
+								pause-on-hover
+:overlay="false"
 				:ui="{
-					root: 'h-[calc(100vh-var(--ui-header-height))] [--duration:20s]',
-					content: 'w-[30vw]',
-				}"
-			>
-				<Placeholder
-					class="w-full h-[10vh] bg-secondary"
+					root: '[--gap:--spacing(8)] [--duration:40s] border-default absolute h-full lg:h-auto w-full left-0 border-y md:border-x md:border-y-0 lg:w-full lg:flex-col',
+						content: 'h-full lg:min-w-full flex-row lg:flex-col lg:animate-[marquee-vertical_var(--duration)_linear_infinite] lg:rtl:animate-[marquee-vertical-rtl_var(--duration)_linear_infinite]',
+					}"
+				>
+					<a
+						v-for="component of components?.slice(0, 10)"
+						:key="component.path"
+						class="relative group/link w-fit h-[90%] lg:w-[90%] lg:h-auto border-transparent 2xl:p-1.5 2xl:border-y"
+						@click="openImageModal(component.path)"
+					>
+
+						<NuxtImg
+							:src="component.path"
+							loading="lazy"
+							class="h-full lg:w-full lg:hover:scale-105 transition-transform"
 				/>
-				<Placeholder
-					class="w-full h-[15vh] bg-tertiary"
-				/>
-				<Placeholder
-					class="w-full h-[50vh] bg-secondary"
-				/>
-				<Placeholder
-					class="w-full h-[30vh] bg-tertiary"
-				/>
-				<Placeholder
-					class="w-full h-[20vh] bg-secondary"
-				/>
-				<Placeholder
-					class="w-full h-[20vh] bg-tertiary"
-				/>
+</a>
 			</UPageMarquee>
+</div>
 		</UPageHero>
 
 		<a id="more" />
