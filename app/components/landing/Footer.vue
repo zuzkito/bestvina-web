@@ -1,18 +1,18 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
-const isMounted = ref(false);
+const isMounted = ref(0);
 
-const isDark = await computed({
-	get() {
-		return colorMode.value === "dark";
-	},
-	set(_isDark) {
-		colorMode.preference = _isDark ? "dark" : "light";
-	},
-});
+// const isDark = await computed({
+// 	get() {
+// 		return colorMode.value === "dark";
+// 	},
+// 	set(_isDark) {
+// 		colorMode.preference = _isDark ? "dark" : "light";
+// 	},
+// });
 
 onMounted(() => {
-	isMounted.value = true;
+	isMounted.value++;
 });
 
 const links = [{
