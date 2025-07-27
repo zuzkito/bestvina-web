@@ -109,6 +109,7 @@ const scrollDownALittle = () => {
 			</UPageMarquee>
 		</UPageHero>
 
+		<a id="more" />
 		<UPageSection
 			:features="features"
 			:ui="{
@@ -118,7 +119,6 @@ const scrollDownALittle = () => {
 			<template
 				#title
 			>
-				<a id="more" />
 				Táborová základna VŠCHT Praha
 			</template>
 		</UPageSection>
