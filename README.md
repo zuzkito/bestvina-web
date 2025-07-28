@@ -95,12 +95,12 @@ seo:
 title: <new year value>
 description: Historie Běstviny z roku <new year value>
 year: <new year value>
-coverImg: /imgs/rocniky/<b><new year value></b>/cover.jpg
+coverImg: /imgs/rocniky/<new year value>/cover.jpg
 theme:
 ```
 Replace all `<new year value>` with the year. Keep the `theme` empty since the camp is not year over.
 
-Select one nice-looking photo from the ***previous*** year and upload it to folder `public/imgs/rocniky/` named as `cover.jpg`.
+Select one nice-looking photo from the ***current*** year and upload it to folder `public/imgs/rocniky/<current year value>/` named as `cover.jpg`.
 
 Update current year's content file `content/rocniky/<current year>.yml` by adding a theme variable:
 ```yml
