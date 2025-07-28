@@ -24,8 +24,8 @@ async function download() {
 	<UModal
 		:title="imageTitle"
 		:ui="{
-			content: 'max-h-[85vh] max-w-[85vw] landscape:h-full portrait:w-full',
-			body: 'w-full h-full justify-items-center flex justify-center items-center',
+			content: 'max-h-[85vh] max-w-[90vw] landscape:h-full portrait:w-full',
+			body: 'justify-items-center flex justify-center items-center',
 			footer: 'justify-end',
 		}"
 	>
