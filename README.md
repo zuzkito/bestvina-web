@@ -1,5 +1,5 @@
 
-![Logo](https://raw.githubusercontent.com/FelyCZ/bestvina-web/refs/heads/master/public/imgs/bestvina_logo.png?token=GHSAT0AAAAAADHR5Q2HOLBAZA3U6OUOVNKC2EGXGIQ)
+![Logo](https://github.com/FelyCZ/bestvina-web/blob/ba0e74697893461b7fb1fffd61283d9a7f2add47/public/imgs/bestvina_logo.png?raw=true)
 
 
 # Běstvina Website
