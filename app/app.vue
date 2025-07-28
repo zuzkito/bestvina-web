@@ -5,7 +5,7 @@
 <template>
 	<UApp>
 		<NuxtLoadingIndicator
-			color="var(--ui-primary)"
+			color="var(--ui-secondary)"
 			:height="2"
 		/>
 
