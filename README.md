@@ -96,11 +96,18 @@ title: <new year value>
 description: Historie Běstviny z roku <new year value>
 year: <new year value>
 coverImg: /imgs/rocniky/<b><new year value></b>/cover.jpg
-theme: <year's theme>
+theme:
 ```
-Replace all `<new year value>` with the year and `<year's theme>` with the theme.
+Replace all `<new year value>` with the year. Keep the `theme` empty since the camp is not year over.
 
 Select one nice-looking photo from the ***previous*** year and upload it to folder `public/imgs/rocniky/` named as `cover.jpg`.
+
+Update current year's content file `content/rocniky/<current year>.yml` by adding a theme variable:
+```yml
+(...)
+theme: <current year's theme>
+```
+
 ## Authors
 
 - Jakub Ferenčík ([@FelyCZ](https://www.github.com/FelyCZ))
