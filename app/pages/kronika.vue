@@ -14,7 +14,7 @@ const { data: years } = await useAsyncData("/rocniky/", () => {
 <template>
 	<UPage>
 		<UPageHeader
-			title="Kronika Běstviny"
+			title="Kronika"
 		/>
 
 		<UPageBody>
