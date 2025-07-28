@@ -1,12 +1,9 @@
 <template>
-	<div>
+	<UMain>
 		<LandingHeader />
 
 		<!-- make the page fill windows height even if there is not enough content -->
-		<div class="min-h-[calc(100vh-var(--ui-header-height))]">
-			<slot />
-		</div>
-
+		<slot />
 		<LandingFooter />
-	</div>
+	</UMain>
 </template>
