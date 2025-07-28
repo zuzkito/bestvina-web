@@ -7,7 +7,7 @@ export default defineContentConfig({
 			type: "page",
 			// Define custom schema for docs collection
 			schema: z.object({
-				year: z.string(),
+				year: z.number().int(),
 				coverImg: z.string(), // path to image
 				theme: z.string(),
 			}),
