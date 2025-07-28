@@ -1,75 +1,112 @@
-# Nuxt Minimal Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![Logo](https://raw.githubusercontent.com/FelyCZ/bestvina-web/refs/heads/master/public/imgs/bestvina_logo.png?token=GHSAT0AAAAAADHR5Q2HOLBAZA3U6OUOVNKC2EGXGIQ)
 
-## Setup
 
+# Běstvina Website
+
+Repository containing source code of official website for summer camp Běstvina.
+
+Website will be available at [bestvina.cz](https://bestvina.cz/).
+
+
+## Tech Stack
+
+**Client:** Nuxt v4, TailwindCSS
+* modules:
+    - NuxtUI Pro Library [`@nuxt/ui-pro`]
+    - Nuxt Content [`@nuxt/content`] for generating some pages
+    - Nuxt Image [`@nuxt/image`] for image optimization
+    - ESLint [`@nuxt/eslint`] for linting
+
+**Server:** Bun, Nitro
+
+
+## Installation
+
+### 1. Prerequisites
+The repository is configured to be used in [Visual Studio Code](https://code.visualstudio.com/).
+```powershell
+winget install -e --id Microsoft.VisualStudioCode
+```
+
+Make sure you have installed [Bun](https://bun.com/), or any other runtime and package manager of choice.
+```powershell
+powershell -c "irm bun.sh/install.ps1 | iex"
+```
+
+### 2. Repository
+Clone the repository:
+```powershell
+git clone git@github.com:FelyCZ/bestvina-web.git
+cd bestvina-web
+``` 
+
+### 3. Dependencies
 Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
+```powershell
 bun install
 ```
 
-## Development Server
-
+### 4. Development server
 Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
+```powershell
 bun run dev
+
+# if you want to open a new tab automatically, include -o parameter
+bun run dev -o
 ```
 
-## Production
+### 5. Linting
+To find any problems use:
+```powershell
+bun run lint
+```
 
+To automatically fix problems run:
+```powershell
+bun run lint:fix
+```
+
+### 6. Production build
 Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
+```powershell
 bun run build
 ```
 
-Locally preview production build:
+If you want to preview the production build:
+```powershell
+bun run preivew
+```
+## Documentation
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+### Add new year
+Change `CURRENT_YEAR` constant in `app/app.config.ts`:
+```typescript
+export const CURRENT_YEAR = <new year value>;
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Create a new file `content/rocniky/<new year>.yml`:
+```yml
+seo:
+  title: Ročník <new year value>
+  description: Historie Běstviny z roku <new year value>
+  meta: 
+  link:
+title: <new year value>
+description: Historie Běstviny z roku <new year value>
+year: <new year value>
+coverImg: /imgs/rocniky/<b><new year value></b>/cover.jpg
+theme: <year's theme>
+```
+Replace all `<new year value>` with the year and `<year's theme>` with the theme.
+
+Select one nice-looking photo from the ***previous*** year and upload it to folder `public/imgs/rocniky/` named as `cover.jpg`.
+## Authors
+
+- Jakub Ferenčík ([@FelyCZ](https://www.github.com/FelyCZ))
+
+
+## Credits
+
+ - Michal H. Kolář - for previous website source code
+
