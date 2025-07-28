@@ -22,9 +22,8 @@ const { data: years } = await useAsyncData("/rocniky/", () => {
 				<UBlogPost
 					v-for="(year, index) in years"
 					:key="index"
-					:badge="year.theme"
+					:description="year.theme"
 					:title="`Ročník ${year.year}`"
-					description=""
 					:image="year.coverImg"
 					:to="`/rocniky/${year.year}`"
 					variant="soft"
