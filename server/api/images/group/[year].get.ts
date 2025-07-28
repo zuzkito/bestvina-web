@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import { CURRENT_YEAR } from "~/app.config";
 
+const VALID_EXTENSIONS = ["jpg", "png", "gif", "jpeg", "webp"];
+
 export default defineEventHandler((event) => {
 	const yearParam = getRouterParam(event, "year");
 	if (!yearParam)
@@ -43,7 +45,12 @@ export default defineEventHandler((event) => {
 
 		const files = fs.readdirSync(groupPhotosDir)
 			// get only files
-			.filter(file => fs.statSync(path.posix.join(groupPhotosDir, file)).isFile)
+			.filter((file) => {
+				const s = fs.statSync(path.posix.join(groupPhotosDir, file));
+				if (s.isFile() && VALID_EXTENSIONS.includes(file.substring(file.lastIndexOf(".") + 1).toLowerCase()))
+					return true;
+				return false;
+			})
 			// get full paths
 			.map((file) => {
 				return path.posix.join("imgs",
