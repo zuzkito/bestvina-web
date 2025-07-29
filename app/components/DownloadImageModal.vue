@@ -63,7 +63,7 @@ async function download() {
 				<UButton
 					label="Stáhnout"
 					color="secondary"
-					variant="outline"
+					variant="solid"
 				/>
 
 			</a>
