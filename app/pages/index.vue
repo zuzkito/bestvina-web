@@ -128,7 +128,7 @@ const scrollDownALittle = () => {
 	<UMain>
 		<UPageHero
 			orientation="horizontal"
-			:ui="{
+			:ui=" {
 				root: 'mt-0',
 				container: 'pb-0 sm:pb-0 py-12 gap-12 lg:py-0 lg:min-h-[var(--my-page-height)] lg:grid-cols-2',
 				description: 'text-balance',
@@ -153,30 +153,30 @@ const scrollDownALittle = () => {
 
 					<!-- fotogalerie -->
 					<!-- <NuxtLink
-						to="/"
-					>
-						<UBadge
-							trailing-icon="i-lucide-arrow-right"
-							size="md"
-							variant="outline"
-							color="tertiary"
-						>
-							Fotogalerie byla aktualizována!
-						</UBadge>
+to="/"
+>
+<UBadge
+trailing-icon="i-lucide-arrow-right"
+size="md"
+variant="outline"
+color="tertiary"
+>
+Fotogalerie byla aktualizována!
+</UBadge>
 					</NuxtLink> -->
 
 					<!-- shit -->
 					<!-- <NuxtLink
-						to="/"
-					>
-						<UBadge
-							trailing-icon="i-lucide-arrow-right"
-							size="md"
-							variant="outline"
-							color="error"
-						>
-							Něco se po💩!
-						</UBadge>
+to="/"
+>
+<UBadge
+trailing-icon="i-lucide-arrow-right"
+size="md"
+variant="outline"
+color="error"
+>
+Něco se po💩!
+</UBadge>
 					</NuxtLink> -->
 				</div>
 			</template>
@@ -200,7 +200,7 @@ const scrollDownALittle = () => {
 				<UPageMarquee
 					pause-on-hover
 					:overlay="false"
-					:ui="{
+					:ui=" {
 						root: '[--gap:--spacing(8)] [--duration:40s] border-default absolute h-full lg:h-auto w-full left-0 border-y md:border-x md:border-y-0 lg:w-full lg:flex-col',
 						content: 'h-full lg:min-w-full flex-row lg:flex-col lg:animate-[marquee-vertical_var(--duration)_linear_infinite] lg:rtl:animate-[marquee-vertical-rtl_var(--duration)_linear_infinite]',
 					}"
@@ -225,7 +225,7 @@ const scrollDownALittle = () => {
 		<a id="more" />
 		<UPageSection
 			:features="features"
-			:ui="{
+			:ui=" {
 				root: 'min-h-[var(--my-page-height)]',
 			}"
 		>
