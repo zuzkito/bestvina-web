@@ -1,6 +1,8 @@
+// noinspection DuplicatedCode
+
 import fs from "fs";
 import path from "path";
-import { CURRENT_YEAR } from "~/app.config";
+import { CURRENT_YEAR, OLDEST_YEAR } from "~/app.config";
 
 const VALID_EXTENSIONS = ["jpg", "png", "gif", "jpeg", "webp"];
 
@@ -20,7 +22,7 @@ export default defineEventHandler((event) => {
 		}));
 	}
 
-	if (year < 2010 || year > CURRENT_YEAR) {
+	if (year < OLDEST_YEAR || year > CURRENT_YEAR) {
 		return sendError(event, createError({
 			statusCode: 422,
 			statusMessage: "Not Found (Invalid Year)",
