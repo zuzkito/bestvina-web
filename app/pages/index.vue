@@ -118,7 +118,29 @@ const components = ref([
 	},
 ]);
 
-// used to move from hero to next section
+const logos = ref([{
+	link: "https://vscht.cz/",
+	src: "/imgs/sponsors/vscht.png",
+	srcDark: "/imgs/sponsors/dark/vscht.png",
+	alt: "VŠCHT Praha",
+}, {
+	link: "https://natur.cuni.cz/",
+	src: "/imgs/sponsors/prf_uk.png",
+	srcDark: "/imgs/sponsors/dark/prf_uk.png",
+	alt: "PřF UK",
+}, {
+	link: "https://www.orlenunipetrol.cz/",
+	src: "/imgs/sponsors/orlen_unipetrol.png",
+	srcDark: "/imgs/sponsors/dark/orlen_unipetrol.png",
+	alt: "ORLEN Unipetrol",
+}, {
+	link: "https://www.lach-ner.cz/",
+	src: "/imgs/sponsors/lachner.png",
+	srcDark: "/imgs/sponsors/dark/lachner.png",
+	alt: "ORLEN Unipetrol",
+}]);
+
+// used to move from hero to the next section
 const scrollDownALittle = () => {
 	document.getElementById("more")?.scrollIntoView();
 };
@@ -235,5 +257,27 @@ Něco se po💩!
 				Táborová základna VŠCHT Praha
 			</template>
 		</UPageSection>
+
+		<div class="flex flex-col gap-4 pt-4 mb-4 items-center">
+			<p class="text-lg text-center font-semibold text-highlighted">
+				Soustředění dlouhodobě podporují...
+			</p>
+			<div class="flex flex-row flex-wrap gap-8 py-4 justify-evenly">
+				<a
+					v-for="(logo, index) in logos"
+					:key="index"
+					:href="logo.link"
+					target="_blank"
+				>
+					<UColorModeImage
+						:alt="logo.alt"
+						:dark="logo.srcDark"
+						:light="logo.src"
+						class="h-[75px] md:h-[100px] lg:h-[125px] hover:scale-105 transition-transform duration-500 shrink-0"
+						fit="contain"
+					/>
+				</a>
+			</div>
+		</div>
 	</UMain>
 </template>
