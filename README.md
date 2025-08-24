@@ -24,7 +24,7 @@ Website will be available at [bestvina.cz](https://bestvina.cz/).
 ## Installation
 
 ### 1. Prerequisites
-The repository is configured to be used in [Visual Studio Code](https://code.visualstudio.com/).
+The repository is configured to be used in either [JetBrains WebStorm](https://www.jetbrains.com/webstorm/) or [Visual Studio Code](https://code.visualstudio.com/).
 ```powershell
 winget install -e --id Microsoft.VisualStudioCode
 ```
