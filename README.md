@@ -79,7 +79,7 @@ bun run preivew
 ```
 ## Documentation
 
-### Add new year
+### Add a new year
 Change `CURRENT_YEAR` constant in `app/app.config.ts`:
 ```typescript
 export const CURRENT_YEAR = <new year value>;
