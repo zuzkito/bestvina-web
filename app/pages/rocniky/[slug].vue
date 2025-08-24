@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { CURRENT_YEAR } from "~/app.config";
 import ImageModal from "~/components/DownloadImageModal.vue";
+import Placeholder from "~/components/Placeholder.vue";
 
 definePageMeta({
 	layout: "page",
@@ -14,6 +15,9 @@ const { data: page } = await useAsyncData(route.path, () => {
 const isCurrentYear = ref(page.value?.year == CURRENT_YEAR || false);
 
 const { data: groupPhotoPaths } = await useFetch(`/api/images/group/${page.value?.year}`);
+const { data: galleryPreviewPhotos } = await useFetch(`/api/images/gallery/${page.value?.year}/random?n=10`);
+
+const isGalleryAvailable = computed(() => galleryPreviewPhotos?.value?.length != 0);
 
 // prepare image modal for viewing and downloading
 const overlay = useOverlay();
@@ -24,18 +28,6 @@ async function openImageModal(path: string) {
 		imgPath: path,
 	});
 }
-
-// gallery preview items
-// TODO: fill with real photos
-const galleryItems = [
-	"https://picsum.photos/468/468?random=1",
-	"https://picsum.photos/468/468?random=2",
-	"https://picsum.photos/468/468?random=3",
-	"https://picsum.photos/468/468?random=4",
-	"https://picsum.photos/468/468?random=5",
-	"https://picsum.photos/468/468?random=1",
-	"https://picsum.photos/468/468?random=2",
-];
 
 // get surroundings for navigation
 const surround = await getSurroundings();
@@ -78,8 +70,7 @@ async function getSurroundings() {
 				<USeparator icon="i-mdi-history" />
 
 				<!-- Gallery -->
-				<USeparator class="my-8" />
-				<div>
+				<div v-show="isGalleryAvailable">
 					<UPageHeader
 						:ui="{
 							title: 'text-2xl sm:text-3xl',
@@ -90,7 +81,6 @@ async function getSurroundings() {
 					<NuxtLink :to="`${route.path}/galerie`">
 						<UAlert
 							class="hover:border-dashed hover:border"
-							close-icon="i-lucide-arrow-right"
 							icon="i-lucide-gallery-thumbnails"
 							title="Chceš-li zobrazit celou galerii, klikni zde!"
 							variant="subtle"
@@ -99,24 +89,52 @@ async function getSurroundings() {
 					<UCarousel
 						v-slot="{ item }"
 						:autoplay="{
-							delay: 500000,
+							delay: 5000,
+							stopOnInteraction: true,
 						}"
-						:items="galleryItems"
+						:items="galleryPreviewPhotos"
 						:ui="{
 							container: 'gap-0 p-0 ms-0',
-							item: 'basis-full sm:basis-1/3 lg:basis-1/5 w-fit p-0 flex flex-row gap-0 justify-center',
+							item: 'basis-full lg:basis-1/3 w-fit p-0 flex flex-row gap-0 justify-center',
 						}"
 						class="w-full mt-8 mb-16"
 						dots
 						loop
 					>
-						<div class="m-4">
-							<img
+						<div class="m-4 w-full aspect-square lg:aspect-auto">
+							<NuxtImg
+								v-slot="{ src, isLoaded, imgAttrs }"
+								:custom="true"
 								:src="item"
-								class="w-full h-fit rounded-lg "
 							>
+								<!-- Show the actual image when loaded -->
+								<div
+									v-if="isLoaded"
+									class="p-4"
+								>
+									<img
+										:key="item"
+										:alt="`náhodná fotografie z roku ${page?.year}`"
+										:src="src"
+										class="w-full aspect-square object-cover rounded-md md:hover:scale-110 transition-transform"
+										loading="lazy"
+										v-bind="imgAttrs"
+										@click="openImageModal(item)"
+									>
+								</div>
+
+								<!-- Show a placeholder while loading -->
+								<USkeleton
+									v-else
+									class="w-full aspect-square"
+								/>
+							</NuxtImg>
 						</div>
 					</UCarousel>
+
+					<USeparator
+						class="my-4"
+					/>
 				</div>
 
 				<!-- Group Photos -->
@@ -127,7 +145,7 @@ async function getSurroundings() {
 						}"
 						title="Fotografie oddílů"
 					/>
-					<div class="flex flex-wrap gap-8 py-4 justify-evenly">
+					<div class="flex flex-row flex-wrap gap-8 py-4 justify-evenly">
 						<a
 							v-for="photoPath in groupPhotoPaths"
 							:key="photoPath"
@@ -137,13 +155,18 @@ async function getSurroundings() {
 								:src="photoPath"
 								class="rounded-md md:hover:scale-110 transition-transform"
 								height="300"
+								lazy="blur"
+								loading="lazy"
 							/>
 						</a>
 					</div>
 				</div>
+				<USeparator
+					v-if="surround?.filter(Boolean).length"
+					class="mt-4 mb-8"
+				/>
+				<UContentSurround :surround="surround" />
 			</div>
-			<USeparator v-if="surround?.filter(Boolean).length" />
-			<UContentSurround :surround="surround" />
 		</UPageBody>
 	</UPage>
 </template>
