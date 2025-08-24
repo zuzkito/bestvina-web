@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { VueSpinnerGrid } from "vue3-spinners";
 
 const toast = useToast();
@@ -32,25 +32,24 @@ async function download() {
 		<template #body>
 			<NuxtImg
 				v-slot="{ src, isLoaded, imgAttrs }"
-				:src="imgPath"
 				:custom="true"
-				class=""
+				:src="imgPath"
 			>
 				<!-- Show the actual image when loaded -->
 				<img
 					v-if="isLoaded"
-					v-bind="imgAttrs"
 					:src="src"
 					class="w-fit h-fit landscape:h-full portrait:w-full object-contain"
+					v-bind="imgAttrs"
 				>
 
-				<!-- Show a placeholder while loading -->
+				<!-- Show a spinner while loading -->
 				<VueSpinnerGrid
 					v-else
-					size="50"
-					color="neutral"
-					alt="placeholder"
+					alt="spinner"
 					class="m-8"
+					color="var(--ui-neutral)"
+					size="50"
 				/>
 			</NuxtImg>
 		</template>
@@ -61,8 +60,8 @@ async function download() {
 				@click="close();download()"
 			>
 				<UButton
-					label="Stáhnout"
 					color="secondary"
+					label="Stáhnout"
 					variant="solid"
 				/>
 

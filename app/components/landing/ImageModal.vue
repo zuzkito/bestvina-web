@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { VueSpinnerGrid } from "vue3-spinners";
 
 defineProps<{
@@ -8,36 +8,36 @@ defineProps<{
 
 <template>
 	<UModal
-		class=""
-		tit
 		:ui="{
 			content: 'max-h-[85vh] max-w-[85vw] w-fit h-fit',
 			body: 'w-fit h-fit justify-items-center',
 		}"
+		class=""
+		tit
 	>
 		<template #content>
 			<NuxtImg
 				v-slot="{ src, isLoaded, imgAttrs }"
-				:src="imgPath"
-				loading="lazy"
-				fit="contain"
 				:custom="true"
+				:src="imgPath"
 				class="max-h-[80vh] max-w-[80vw]"
+				fit="contain"
+				loading="lazy"
 			>
 				<!-- Show the actual image when loaded -->
 				<img
 					v-if="isLoaded"
-					v-bind="imgAttrs"
 					:src="src"
+					v-bind="imgAttrs"
 				>
 
-				<!-- Show a placeholder while loading -->
+				<!-- Show a spinner while loading -->
 				<VueSpinnerGrid
 					v-else
-					size="50"
-					color="neutral"
-					alt="placeholder"
+					alt="spinner"
 					class="m-8"
+					color="var(--ui-neutral)"
+					size="50"
 				/>
 			</NuxtImg>
 		</template>
