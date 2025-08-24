@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const colorMode = useColorMode();
 const isMounted = ref(0);
 
@@ -16,18 +16,14 @@ onMounted(() => {
 });
 
 const links = [{
-	label: "Team",
+	label: "O webu",
 	to: "/",
 }, {
-	label: "Roadmap",
-	to: "/",
+	label: "Lidé",
+	to: "/lide",
 }, {
-	label: "Terms",
-	to: "/",
-}, {
-	label: "Releases",
-	to: "https://github.com/nuxt/ui/releases",
-	target: "_blank",
+	label: "Kontakt",
+	to: "/kontakt",
 }];
 </script>
 
@@ -40,65 +36,65 @@ const links = [{
 	<UFooter>
 		<template #left>
 			<NuxtLink
-				to="https://github.com/nuxt/ui"
-				target="_blank"
 				class="text-sm text-muted"
+				target="_blank"
+				to="https://github.com/FelyCZ/bestvina-web"
 			>
-				Published under <span class="text-highlighted">MIT License</span>
+				Zdrojový kód je dostupný na <span class="text-highlighted">GitHubu</span>
 			</NuxtLink>
 		</template>
 
 		<UNavigationMenu
 			:items="links"
-			variant="link"
 			color="neutral"
+			variant="link"
 		/>
 
 		<template #right>
 			<UButton
 				aria-label="Nuxt Website"
-				icon="i-simple-icons-nuxtdotjs"
-				to="https://nuxt.com"
-				target="_blank"
 				color="neutral"
-				variant="ghost"
+				icon="i-simple-icons-nuxtdotjs"
 				size="sm"
+				target="_blank"
+				to="https://nuxt.com"
+				variant="ghost"
 			/>
 			<UButton
 				aria-label="Nuxt UI on Discord"
-				icon="i-simple-icons-discord"
-				to="https://chat.nuxt.dev"
-				target="_blank"
 				color="neutral"
-				variant="ghost"
+				icon="i-simple-icons-discord"
 				size="sm"
+				target="_blank"
+				to="https://chat.nuxt.dev"
+				variant="ghost"
 			/>
 			<UButton
 				aria-label="Nuxt on X"
-				icon="i-simple-icons-x"
-				to="https://x.com/nuxt_js"
-				target="_blank"
 				color="neutral"
-				variant="ghost"
+				icon="i-simple-icons-x"
 				size="sm"
+				target="_blank"
+				to="https://x.com/nuxt_js"
+				variant="ghost"
 			/>
 			<UButton
 				aria-label="Nuxt on BlueSky"
-				icon="i-simple-icons-bluesky"
-				to="https://bsky.app/profile/nuxt.com"
-				target="_blank"
 				color="neutral"
-				variant="ghost"
+				icon="i-simple-icons-bluesky"
 				size="sm"
+				target="_blank"
+				to="https://bsky.app/profile/nuxt.com"
+				variant="ghost"
 			/>
 			<UButton
 				aria-label="Nuxt UI on GitHub"
-				icon="i-simple-icons-github"
-				to="https://github.com/nuxt/ui"
-				target="_blank"
 				color="neutral"
-				variant="ghost"
+				icon="i-simple-icons-github"
 				size="sm"
+				target="_blank"
+				to="https://github.com/nuxt/ui"
+				variant="ghost"
 			/>
 		</template>
 	</UFooter>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const items = computed<NavigationMenuItem[]>(() => [
@@ -14,6 +14,10 @@ const items = computed<NavigationMenuItem[]>(() => [
 		label: "Kronika",
 		icon: "i-mdi-book-open-page-variant-outline",
 		to: "/kronika",
+	}, {
+		label: "Galerie",
+		icon: "i-lucide-gallery-thumbnails",
+		to: "/galerie",
 	}, {
 		label: "Lidé",
 		icon: "i-mdi-account-group",
@@ -36,9 +40,9 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 		<UNavigationMenu
 			:items="items"
-			variant="pill"
-			orientation="horizontal"
 			class="hidden lg:inline-flex border-default data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-48"
+			orientation="horizontal"
+			variant="pill"
 		/>
 
 		<template #right>
@@ -48,8 +52,8 @@ const items = computed<NavigationMenuItem[]>(() => [
 		<template #body>
 			<UNavigationMenu
 				:items="items"
-				orientation="vertical"
 				class="-mx-2.5"
+				orientation="vertical"
 			/>
 
 			<USeparator class="my-6" />
