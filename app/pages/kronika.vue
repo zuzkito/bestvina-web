@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { CURRENT_YEAR } from "~/app.config";
+<script lang="ts" setup>
+import { CURRENT_YEAR } from "#shared/constants";
 
 definePageMeta({
 	layout: "page",

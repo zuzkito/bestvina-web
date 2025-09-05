@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useInfiniteScroll } from "@vueuse/core";
 import { ref } from "vue";
-import { CURRENT_YEAR, OLDEST_YEAR } from "~/app.config";
+import { CURRENT_YEAR, OLDEST_YEAR } from "#shared/constants";
 import { z } from "zod";
 import { VueSpinnerBars } from "vue3-spinners";
 
