@@ -1,6 +1,9 @@
+<script lang="ts" setup>
+</script>
+
 <template>
 	<div>
-		<LandingHeader />
+		<AppHeader />
 
 		<UMain>
 			<UContainer
@@ -10,6 +13,6 @@
 			</UContainer>
 		</UMain>
 
-		<LandingFooter />
+		<AppFooter />
 	</div>
 </template>
