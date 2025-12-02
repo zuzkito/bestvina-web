@@ -51,6 +51,11 @@ export default defineNuxtConfig({
 			enabled: true,
 		},
 	},
+	app: {
+		rootAttrs: {
+			id: "app",
+		},
+	},
 	css: ["~/assets/css/main.css"],
 	router: {
 		options: {

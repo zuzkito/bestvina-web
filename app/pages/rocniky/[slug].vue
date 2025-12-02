@@ -44,19 +44,6 @@ async function getSurroundings() {
 	});
 	return surround;
 }
-
-const scrollToTop = () => {
-	const appContainer = useNuxtApp().$appContainer as Ref<HTMLElement> || undefined;
-	if (!appContainer)	return;
-
-	appContainer.value.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-// scroll to top of the page after going back/forward using surroundings
-watch(page, (newPage, oldPage) => {
-	if (newPage !== oldPage)
-		scrollToTop();
-}, { immediate: true });
 </script>
 
 <template>

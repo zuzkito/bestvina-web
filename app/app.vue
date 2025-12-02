@@ -2,9 +2,13 @@
 import { onMounted } from "#imports";
 import { cs } from "@nuxt/ui/locale";
 
-const appContainer = useTemplateRef<HTMLElement>("app-container");
+const nuxtApp = useNuxtApp();
+const pageContainer = useTemplateRef<HTMLElement>("page");
+
 onMounted(() => {
-	useNuxtApp().provide("appContainer", appContainer);
+	const appContainer = shallowRef(document.getElementById("app"));
+	nuxtApp.provide("appContainer", readonly(appContainer));
+	nuxtApp.provide("pageContainer", readonly(pageContainer));
 });
 
 useHead({
@@ -22,27 +26,28 @@ useHead({
 </script>
 
 <template>
-	<div
-		ref="app-container"
-		class="h-[100vh] overflow-y-auto"
+	<UApp
+		:locale="cs"
 	>
-		<UApp :locale="cs">
-			<NuxtLoadingIndicator
-				:height="2"
-				color="var(--ui-primary)"
-			/>
-			<UBanner
-				:ui="{
-					root: 'py-2',
-					title: 'line-clamp-3 whitespace-normal',
-				}"
-				class="h-fit"
-				close
-				title="Web je stále v raných fázích vývoje a nemusí zatím fungovat zcela podle představ..."
-			/>
-			<NuxtLayout>
+		<NuxtLoadingIndicator
+			:height="2"
+			color="var(--ui-primary)"
+		/>
+		<UBanner
+			:ui="{
+				root: 'py-2',
+				title: 'line-clamp-3 whitespace-normal',
+			}"
+			class="h-fit"
+			close
+			title="Web je stále v raných fázích vývoje a nemusí zatím fungovat zcela podle představ..."
+		/>
+		<NuxtLayout>
+			<div
+				ref="page"
+			>
 				<NuxtPage />
-			</NuxtLayout>
-		</UApp>
-	</div>
+			</div>
+		</NuxtLayout>
+	</UApp>
 </template>
