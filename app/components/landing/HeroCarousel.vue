@@ -5,6 +5,7 @@ const placeholder = img(src, {}, { preset: "thumbnailXXSm" });
 </script>
 
 <template>
+	<!--  TODO: make this a carousel -->
 	<NuxtImg
 		:placeholder="placeholder"
 		:src="src"
