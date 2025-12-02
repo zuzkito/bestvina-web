@@ -158,6 +158,12 @@ export default defineNuxtConfig({
 		},
 	},
 	studio: {
-		dev: false,
+		dev: true,
+		repository: {
+			provider: "github",
+			owner: "FelyCZ",
+			repo: "bestvina-web",
+			branch: "master",
+		},
 	},
 });
