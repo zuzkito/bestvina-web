@@ -1,9 +1,9 @@
 <template>
 	<UMain>
-		<LandingHeader />
+		<AppHeader />
 
-		<!-- make the page fill windows height even if there is not enough content -->
 		<slot />
-		<LandingFooter />
+
+		<AppFooter />
 	</UMain>
 </template>

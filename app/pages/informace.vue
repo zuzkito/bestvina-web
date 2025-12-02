@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 definePageMeta({
 	layout: "page",
 });
@@ -9,12 +9,11 @@ definePageMeta({
 		<UPageHeader
 			title="O soustředění"
 		/>
-		<template #left />
-
 		<UPageBody>
-			<h1>informace</h1>
+			<InDevelopment
+				:with-page-wrapper="false"
+				class="mt-48"
+			/>
 		</UPageBody>
-
-		<template #right />
 	</UPage>
 </template>

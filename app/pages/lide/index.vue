@@ -1,9 +1,9 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 definePageMeta({
 	layout: "page",
 });
 </script>
 
 <template>
-	<h1>lide</h1>
+	<InDevelopment />
 </template>

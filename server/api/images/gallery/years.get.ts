@@ -21,7 +21,7 @@ export default defineEventHandler((event) => {
 		}
 
 		return fs.readdirSync(gradesDir)
-		// get only dirs that have photos in gallery, exclude folders starting with underscore (_template)
+		// get only dirs that have photos in the gallery, exclude folders starting with underscore (_template)
 			.filter((item) => {
 				const s = fs.statSync(path.posix.join(gradesDir, item));
 				if (s.isDirectory() && !item.startsWith("_")) {
