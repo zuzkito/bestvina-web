@@ -57,11 +57,6 @@ export default defineNuxtConfig({
 		},
 	},
 	css: ["~/assets/css/main.css"],
-	router: {
-		options: {
-			scrollBehaviorType: "smooth",
-		},
-	},
 	content: {
 		experimental: { nativeSqlite: true },
 	},

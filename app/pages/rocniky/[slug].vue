@@ -59,21 +59,12 @@ async function getSurroundings() {
 		<UPageBody>
 			<Placeholder class="w-full h-50" />
 
-			<!--			<UCalendar -->
-			<!--				v-model="calendarDate" -->
-			<!--				:number-of-months="2" -->
-			<!--				:year-controls="false" -->
-			<!--				class="w-1/3" -->
-			<!--				range -->
-			<!--			/> -->
-
 			<ContentRenderer :value="page.body" />
 
 			<div v-show="!isCurrentYear">
 				<USeparator icon="i-mdi-history" />
 
 				<!-- Gallery -->
-
 				<LazyGradeGalleryPreview
 					:year="page.year.toString()"
 				/>
