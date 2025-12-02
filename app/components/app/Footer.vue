@@ -1,0 +1,67 @@
+<script lang="ts" setup>
+const colorMode = useColorMode();
+const isMounted = ref(0);
+
+const links = [{
+	label: "O webu",
+	to: "/",
+}, {
+	label: "Lidé",
+	to: "/lide",
+}, {
+	label: "Kontakt",
+	to: "/kontakt",
+}];
+</script>
+
+<template>
+	<UFooter
+		class="bg-black"
+	>
+		<template #left>
+			<NuxtLink
+				class="text-sm text-muted"
+				target="_blank"
+				to="https://github.com/FelyCZ/bestvina-web"
+			>
+				Zdrojový kód je dostupný na <span class="text-white hover:text-secondary">GitHubu</span>
+			</NuxtLink>
+		</template>
+
+		<!--		<UNavigationMenu -->
+		<!--			:items="links" -->
+		<!--			color="neutral" -->
+		<!--			variant="link" -->
+		<!--		/> -->
+
+		<template #default>
+			<!-- todo -->
+		</template>
+
+		<template #right>
+			<UButton
+				aria-label="Web chemické olympiády"
+				class="text-white light:hover:bg-elevated/20 dark:hover:bg-elevated hover:text-secondary"
+				color="neutral"
+				icon="i-carbon-chemistry"
+				label="Chemická olympiáda"
+				size="sm"
+				target="_blank"
+				to="https://olympiada.vscht.cz/"
+				variant="link"
+			/>
+
+			<UButton
+				aria-label="Web biologické olympiády"
+				class="text-white light:hover:bg-elevated/20 dark:hover:bg-elevated hover:text-secondary"
+				color="neutral"
+				icon="i-material-symbols-microbiology-outline"
+				label="Biologická olympiáda"
+				size="sm"
+				target="_blank"
+				to="https://olympiada.natur.cuni.cz/cs/"
+				variant="ghost"
+			/>
+		</template>
+	</UFooter>
+</template>
