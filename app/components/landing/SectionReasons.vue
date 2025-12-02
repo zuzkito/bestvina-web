@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ButtonProps } from "#ui/components/Button.vue";
+
 const features = ref([
 	{
 		title: "Nové znalosti a dovednosti",
@@ -29,7 +31,7 @@ const features = ref([
 	},
 ]);
 
-const links: ButtonProps[] = ref([
+const links = ref<ButtonProps[]>([
 	{
 		color: "secondary",
 		label: "Chci vědět víc",
