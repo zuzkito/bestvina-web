@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VueSpinnerGrid } from "vue3-spinners";
 
 const toast = useToast();
 
@@ -44,13 +43,20 @@ async function download() {
 				>
 
 				<!-- Show a spinner while loading -->
-				<VueSpinnerGrid
-					v-else
-					alt="spinner"
-					class="m-8"
-					color="var(--ui-neutral)"
-					size="50"
-				/>
+<!--				<VueSpinnerGrid-->
+<!--					v-else-->
+<!--					alt="spinner"-->
+<!--					class="m-8"-->
+<!--					color="var(&#45;&#45;ui-neutral)"-->
+<!--					size="50"-->
+<!--				/>-->
+            <UIcon
+              v-else
+              alt="spinner"
+              class="m-8"
+              color="primary"
+              name="i-svg-spinners-ring-resize"
+              size="50" />
 			</NuxtImg>
 		</template>
 		<template #footer="{ close }">
