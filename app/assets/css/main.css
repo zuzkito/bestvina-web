@@ -1,15 +1,60 @@
 @import "tailwindcss";
-@import "@nuxt/ui-pro";
+@import "@nuxt/ui";
 
 @theme static {
-  --container-8xl: 90rem;
+    --container-8xl: 90rem;
+    --container-9xl: 100rem;
+    --container-10xl: 112rem;
+    --font-sans: 'Poppins', sans-serif;
+
+    /*
+    Bestvina Colors
+    */
+    --color-teal: oklch(64.843% 0.11012 219);
+    --color-teal-50: oklch(87.364% 0.06374 213.72);
+    --color-teal-100: oklch(85.036% 0.07451 214.4);
+    --color-teal-200: oklch(80.729% 0.09502 214.61);
+    --color-teal-300: oklch(76.521% 0.1107 216.48);
+    --color-teal-400: oklch(72.613% 0.12183 218.91);
+    --color-teal-500: oklch(64.843% 0.11012 219);
+    --color-teal-600: oklch(52.476% 0.08756 218.32);
+    --color-teal-700: oklch(39.361% 0.06431 218.29);
+    --color-teal-800: oklch(25.016% 0.03704 216.17);
+    --color-teal-900: oklch(0% 0 none);
+    --color-teal-950: oklch(0% 0 none);
+
+    --color-yellow: oklch(82.534% 0.17058 79.939);
+    --color-yellow-50: oklch(94.449% 0.06553 88.063);
+    --color-yellow-100: oklch(93.061% 0.08554 89.137);
+    --color-yellow-200: oklch(90.062% 0.11959 88.262);
+    --color-yellow-300: oklch(87.281% 0.14618 86.614);
+    --color-yellow-400: oklch(84.897% 0.16416 84.45);
+    --color-yellow-500: oklch(82.534% 0.17058 79.939);
+    --color-yellow-600: oklch(69.208% 0.14339 79.895);
+    --color-yellow-700: oklch(54.637% 0.11294 80.727);
+    --color-yellow-800: oklch(39.006% 0.0803 82.443);
+    --color-yellow-900: oklch(21.556% 0.04406 88);
+    --color-yellow-950: oklch(10.785% 0.02213 94.54);
+
+    --color-orange: oklch(73.413% 0.17943 56.109);
+    --color-orange-50: oklch(91.399% 0.06512 70.605);
+    --color-orange-100: oklch(89.072% 0.08302 69.947);
+    --color-orange-200: oklch(84.82% 0.11646 68.812);
+    --color-orange-300: oklch(80.882% 0.14507 66.283);
+    --color-orange-400: oklch(77.124% 0.16788 61.659);
+    --color-orange-500: oklch(73.413% 0.17943 56.109);
+    --color-orange-600: oklch(60.892% 0.14779 56.725);
+    --color-orange-700: oklch(47.866% 0.11383 58.62);
+    --color-orange-800: oklch(33.687% 0.07785 61.534);
+    --color-orange-900: oklch(17.795% 0.03788 73.138);
+    --color-orange-950: oklch(0% 0 none);
 }
 
 :root {
-  /* --ui-header-height: --spacing(16); */
-  scroll-behavior: smooth;
-  --my-page-height: calc(100vh - var(--ui-header-height));
+    --ui-header-height: --spacing(20);
+    scroll-behavior: smooth;
+    --my-page-height: calc(100vh - var(--ui-header-height));
 
-  /* make the default container a bit bigger than NuxtUI normal */
-  --ui-container: var(--container-8xl);
+    /* make the default container a bit bigger than NuxtUI normal */
+    --ui-container: var(--container-9xl);
 }
