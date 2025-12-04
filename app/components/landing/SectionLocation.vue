@@ -13,9 +13,6 @@ const description = ref(
 <template>
 	<UPageSection
 		:description="description"
-		:ui="{
-			root: 'bg-muted',
-		}"
 		icon="i-lucide-map-pin"
 		orientation="horizontal"
 	>

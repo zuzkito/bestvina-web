@@ -46,6 +46,7 @@ const links = ref<ButtonProps[]>([
 	<UPageSection
 		:features="features"
 		:links="links"
+		class="bg-neutral-50 dark:bg-neutral-800"
 		title="Tři důvody proč jet na Běstvinu..."
 	/>
 </template>

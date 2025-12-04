@@ -29,39 +29,38 @@ const sponsors = ref([{
 </script>
 
 <template>
-	<div
-		class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8
-        flex flex-col lg:grid py-16 lg:py-24 gap-8 sm:gap-16 lg:items-center"
-	>
-		<div>
-			<p class="text-lg text-center font-semibold text-highlighted mx-8">
-				Organizátoři
-			</p>
-			<div class="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-4">
-				<ClickableLogo
-					v-for="org in organizers"
-					:key="org.link"
-					:alt="org.alt"
-					:link="org.link"
-					:src="org.src"
-					:src-dark="org.srcDark"
-				/>
+	<div class="bg-muted">
+		<div class="max-w-(--ui-container) flex flex-col lg:grid py-16 lg:py-24 gap-8 sm:gap-16 lg:items-center w-full  mx-auto px-4 sm:px-6 lg:px-8">
+			<div>
+				<p class="text-lg text-center font-semibold text-highlighted mx-8 mb-4">
+					Organizátoři
+				</p>
+				<div class="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-4">
+					<ClickableLogo
+						v-for="org in organizers"
+						:key="org.link"
+						:alt="org.alt"
+						:link="org.link"
+						:src="org.src"
+						:src-dark="org.srcDark"
+					/>
+				</div>
 			</div>
-		</div>
-		<div>
-			<p class="text-lg text-center font-semibold text-highlighted mx-8">
-				Sponzoři
-			</p>
-			<div class="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-4">
-				<ClickableLogo
-					v-for="org in sponsors"
-					:key="org.link"
-					:alt="org.alt"
-					:extra-class="org.extraClass"
-					:link="org.link"
-					:src="org.src"
-					:src-dark="org.srcDark"
-				/>
+			<div>
+				<p class="text-lg text-center font-semibold text-highlighted mx-8 mb-4">
+					Sponzoři
+				</p>
+				<div class="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-4">
+					<ClickableLogo
+						v-for="org in sponsors"
+						:key="org.link"
+						:alt="org.alt"
+						:extra-class="org.extraClass"
+						:link="org.link"
+						:src="org.src"
+						:src-dark="org.srcDark"
+					/>
+				</div>
 			</div>
 		</div>
 	</div>

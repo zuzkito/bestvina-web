@@ -18,9 +18,6 @@ const scrollTop = () => {
 <template>
 	<UPageSection
 		:description="description"
-		:ui="{
-			root: 'bg-muted',
-		}"
 		icon="i-mdi-cat"
 		orientation="horizontal"
 		title="Bojíš se, že se budeš nudit?"

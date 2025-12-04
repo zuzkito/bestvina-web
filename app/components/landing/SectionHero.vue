@@ -13,6 +13,9 @@ const description = ref(
 		:ui="{
 			description: 'lg:max-w-[80%]',
 			container: 'py-16 pb-16 sm:py-8 sm:pb-16 lg:pb-0 lg:py-40',
+			headline: 'w-fit',
+			header: 'flex flex-col items-center text-center lg:text-start lg:block',
+			footer: 'flex flex-row justify-center lg:block',
 		}"
 		orientation="horizontal"
 	>
@@ -24,6 +27,14 @@ const description = ref(
 		</template>
 		<template #links>
 			<UButton
+				:to="`/rocniky/`+ CURRENT_YEAR.toString()"
+				color="primary"
+				label="Aktuální ročník"
+				prefetch-on="visibility"
+				size="xl"
+				trailing-icon="i-lucide-arrow-right"
+			/>
+			<UButton
 				color="neutral"
 				label="O soustředění"
 				prefetch-on="visibility"
@@ -31,15 +42,6 @@ const description = ref(
 				to="/informace"
 				trailing-icon="i-lucide-arrow-right"
 				variant="subtle"
-			/>
-
-			<UButton
-				:to="`/rocniky/`+ CURRENT_YEAR.toString()"
-				color="primary"
-				label="Aktuální ročník"
-				prefetch-on="visibility"
-				size="xl"
-				trailing-icon="i-lucide-arrow-right"
 			/>
 		</template>
 

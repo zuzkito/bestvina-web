@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { CalendarDate } from "@internationalized/date";
-
 definePageMeta({
 	layout: "landing",
 });
@@ -9,37 +7,36 @@ definePageMeta({
 const scrollDownALittle = () => {
 	document.getElementById("more")?.scrollIntoView({ behavior: "smooth" });
 };
-
-const currentYearTerm = shallowRef({
-	start: new CalendarDate(2025, 6, 27),
-	end: new CalendarDate(2025, 7, 11),
-});
 </script>
 
 <template>
-	<UMain>
-		<LandingSectionHero />
-
-		<USeparator
-			icon="i-mdi-arrow-down"
+	<div>
+		<NuxtImg
+			class="object-cover w-full h-full opacity-7 dark:opacity-10 fixed top-0 left-0 right-0 bottom-0 z-[-999]"
+			src="imgs/hero_bg.svg"
 		/>
+		<UMain>
+			<LandingSectionHero />
 
-		<LandingSectionReasons />
+			<USeparator />
 
-		<USeparator />
+			<LandingSectionReasons />
 
-		<LandingSectionActivities />
+			<USeparator />
 
-		<USeparator />
+			<LandingSectionActivities />
 
-		<LandingSectionPeople />
+			<USeparator />
 
-		<USeparator />
+			<LandingSectionPeople />
 
-		<LandingSectionLocation />
+			<USeparator />
 
-		<USeparator />
+			<LandingSectionLocation />
 
-		<LandingLogos />
-	</UMain>
+			<USeparator />
+
+			<LandingLogos />
+		</UMain>
+	</div>
 </template>
