@@ -3,31 +3,29 @@ import type { ButtonProps } from "#ui/components/Button.vue";
 
 const features = ref([
 	{
-		title: "Nové znalosti a dovednosti",
+		title: "Náskok před ostatními",
 		description:
-        "Během čtrnácti dní se naučíš obrovské množství nových informací, "
-        + "které uplatníš nejen v dalších ročnících olympiád, "
-        + "ale také třeba ve škole nebo i při poznávání světa kolem nás. "
-        + "Mnohdy jde o témata, kterým se běžně na střední škole ani nevěnuje čas, což ti dá velkou výhodu v budoucím životě.",
-		icon: "i-lucide-book-open-text",
+        "Během 14 dnů načerpáš vědomosti a dovednosti, ke kterým se ve škole běžně nedostaneš. "
+        + "Získáš obrovskou výhodu nejen do dalších ročníků olympiád, ale i pro budoucí studium na vysoké škole. "
+        + "Naučíš se dívat na svět kolem sebe v jazyce přírodních věd.",
+		icon: "i-lucide-rocket",
 	},
 	{
-		title: "Přátelé na celý život",
-		description:
-        "Každé létu se na Běstvině sejde přes 120 nadšenců jako ty! "
-        + "Najít si mezi nimi někoho, s kým by sis sedl, je statisticky téměř nemožné. "
-        + "Většina bývalých účastníků si zde našla přátele, ba i partnera/ku na celý život. "
-        + "S některými navíc můžeš sdílet i svůj budoucí život na vysoké škole.",
+		title: "Nadšenci jako ty",
 		icon: "i-lucide-hand-heart",
+		description:
+        "Cítíš, že tvá vášeň pro vědu ve škole naráží na nepochopení? "
+        + "Na Běstvině se každé léto sejde kolem 120 studentů a studentek jako ty! "
+        + "Získáš tu přátele na celý život, poznáš své budoucí spolužáky a kolegy, a třeba i najdeš někoho, "
+        + "s kým jednou budeš objevovat taje biochemie hormonů...",
 	},
 	{
-		title: "Seznámení se s budoucími učiteli",
+		title: "Síť kontaktů",
 		description:
-        "Těš se na přednášky od vyučujících přímo z vysokých škol – dost možná i z tvé budoucí alma mater. "
-        + "Díky tomu si vybuduješ užitečné kontakty ještě před nástupem na univerzitu, což ti budou spolužáci závidět. "
-        + "Kdo z nich se může pochlubit, že si tyká s profesorem?! A co víc, tyto kontakty jsou skvělá výhoda, "
-        + "pokud chceš v budoucích letech řešit SOČku.",
-		icon: "i-mdi-university-outline",
+        "Přednášející a organizátoři tvoří rozmanitou skupinu s širokým spektrem zájmů a zaměření. "
+        + "Právě z těchto setkání často vznikají pěkné spolupráce – ať už formou kvalitní studentské práce (např. SOČ), "
+        + "odborné stáže, nebo budoucím zapojením do výzkumné skupiny.",
+		icon: "i-carbon-network-4",
 	},
 ]);
 
@@ -46,6 +44,9 @@ const links = ref<ButtonProps[]>([
 	<UPageSection
 		:features="features"
 		:links="links"
+		:ui="{
+			features: 'sm:grid-cols-1 md:px-16',
+		}"
 		class="bg-neutral-50 dark:bg-neutral-800"
 		title="Tři důvody proč jet na Běstvinu..."
 	/>

@@ -4,23 +4,18 @@ const src = "/imgs/promo/fireball.jpg";
 const placeholder = img(src, {}, { preset: "thumbnailXXSm" });
 
 const description = ref(
-	"Rozhodně nebudeš! Běstvina není jako škola – není to sezení v lavici a učení se věcí, které nikdy nepoužiješ. "
-	+ "Tady získáš znalosti, se kterými budeš moct ohromit rodiče, spolužáky, ale i sám sebe. "
-	+ "Mimo to si vyzkoušíš práci v laboratořích se spičkovým vybavením nebo do objevíš taje okolí tábora, "
-	+ "vyzkoušíš si nejen zajímavé experimenty ale i ty zábavné. "
-	+ "A odreagovat se můžeš třeba u táboráku, sportu, nebo během neodborného programu.");
-
-const scrollTop = () => {
-	window.scrollTo(0, 0);
-};
+	"Běstvina není jako škola – nebudeš sedět v lavici a biflovat se zbytečnosti. "
+	+ "Tady získáš znalosti, se kterými ohromíš rodiče, spolužáky, ale i sám sebe. "
+	+ "Mimo to si vyzkoušíš práci v laboratořích se spičkovým vybavením a naučíš se poznávat přírodu kolem sebe. "
+	+ "Těš se také na táboráky, sportovní vyžití a další neodborný program.");
 </script>
 
 <template>
 	<UPageSection
 		:description="description"
-		icon="i-mdi-cat"
+		icon="i-lucide-cat"
 		orientation="horizontal"
-		title="Bojíš se, že se budeš nudit?"
+		title="Nudit se rozhodně nebudeš!"
 	>
 		<template #default>
 			<NuxtImg

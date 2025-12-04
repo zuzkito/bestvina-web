@@ -5,8 +5,7 @@ const placeholder = img(src, {}, { preset: "thumbnailXXSm" });
 
 const description = ref(
 	"Soustředění se každoročně koná v areálu táborové základny Vysoké školy chemicko-technologické v obci Běstvina "
-	+ "v Železných horách nedaleko od Pardubic. "
-	+ "I jako ne-biolog okusíš rozmanitost zdejších živočišných druhů – zejména kousavého hmyzu.",
+	+ "v Železných horách. Bydlet budeš v útulné chatce sdílené s dalšími účastníky (a různorodým kousavým hmyzem).",
 );
 </script>
 
@@ -15,11 +14,8 @@ const description = ref(
 		:description="description"
 		icon="i-lucide-map-pin"
 		orientation="horizontal"
+		title="Ve středu České republiky"
 	>
-		<template #title>
-			Táborová základna<br>VŠCHT Praha
-		</template>
-
 		<template #links>
 			<UButton
 				color="secondary"

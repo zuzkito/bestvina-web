@@ -5,7 +5,7 @@ const placeholder = img(src, {}, { preset: "thumbnailXXSm" });
 
 const description = ref(
 	"O tvůj odborný i neodborný program na Běstvině se budou starat jak studenti vysokých škol jen o pár let starší než ty, "
-	+ "tak i současní vědci a učitelé, kteří v minulosti Běstvinu zažili z tvojí pozice také. "
+	+ "tak i současní vědci a učitelé, kteří Běstvinu zažili z tvojí pozice také. "
 	+ "Kromě nich se samozřejmě setkáš i s významnými osobnostmi, které každý rok Běstvinu navštěvují.",
 );
 </script>

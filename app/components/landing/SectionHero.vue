@@ -2,7 +2,7 @@
 import { CURRENT_YEAR } from "#shared/constants";
 
 const description = ref(
-	"Dvoutýdenní soustředění pro nejlepší středoškolské řešitele chemické a biologické olympiády z celé České republiky podporované "
+	"Dvoutýdenní soustředění pro nejlepší středoškolské chemiky a biology z celé České republiky podporované "
 	+ "přírodovědně zaměřenými fakultami předních českých univerzit.",
 );
 </script>
