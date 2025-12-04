@@ -1,17 +1,4 @@
 <script lang="ts" setup>
-const colorMode = useColorMode();
-const isMounted = ref(0);
-
-const links = [{
-	label: "O webu",
-	to: "/",
-}, {
-	label: "Lidé",
-	to: "/lide",
-}, {
-	label: "Kontakt",
-	to: "/kontakt",
-}];
 </script>
 
 <template>
@@ -27,12 +14,6 @@ const links = [{
 				Zdrojový kód je dostupný na <span class="text-white hover:text-secondary">GitHubu</span>
 			</NuxtLink>
 		</template>
-
-		<!--		<UNavigationMenu -->
-		<!--			:items="links" -->
-		<!--			color="neutral" -->
-		<!--			variant="link" -->
-		<!--		/> -->
 
 		<template #default>
 			<!-- todo -->

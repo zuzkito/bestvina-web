@@ -104,11 +104,10 @@ export default defineNuxtConfig({
 		families: [
 			{
 				name: "Poppins",
-				provider: "google", // Explicitly use the Google Fonts provider
-				// Optionally define specific weights/styles you use to reduce bundle size
-				weights: [400, 600, 700], // Example: Regular, Semi-Bold, Bold
-				preload: true, // Explicitly set to true to inject <link rel="preload">
-				display: "swap", // Use 'swap' to avoid invisible text (FOIT)
+				provider: "google",
+				// weights: [200, 400, 500, 600, 700, 800, 900],
+				preload: true,
+				display: "swap",
 			},
 		],
 	},
@@ -158,7 +157,6 @@ export default defineNuxtConfig({
 		},
 	},
 	studio: {
-		dev: true,
 		repository: {
 			provider: "github",
 			owner: "FelyCZ",
