@@ -55,6 +55,10 @@ export default defineNuxtConfig({
 		rootAttrs: {
 			id: "app",
 		},
+		pageTransition: {
+			name: "page",
+			mode: "out-in",
+		},
 	},
 	css: ["~/assets/css/main.css"],
 	content: {
