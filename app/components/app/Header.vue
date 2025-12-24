@@ -36,7 +36,32 @@ const items = computed<NavigationMenuItem[]>(() => [
 	}, {
 		label: "Lidé",
 		icon: "i-mdi-account-group",
-		to: "/lide",
+		children: [
+			{
+				label: "Vedení tábora",
+				to: "/lide/vedeni",
+				description: "Seznam se s těmi, kdo se starají o to, že tábor může proběhnout",
+				icon: "i-mdi-person-tie",
+			},
+			{
+				label: "Aktivní organizátoři",
+				to: "/lide",
+				description: "Poznej všechny, kdo se starají o náplň denního programu",
+				icon: "i-material-symbols-person-play-outline",
+			},
+			{
+				label: "Externí hosté",
+				to: "/lide/externi",
+				description: "Zjisti, kdo z veřejnosti k nám už v minulosti zavítal",
+				icon: "i-mdi-person-star-outline",
+			},
+			{
+				label: "Bývalí organizátoři",
+				to: "/lide/byvali",
+				description: "Podívej se na veterány, kteří se v minulosti podíleli na organizaci",
+				icon: "i-material-symbols-person-heart-outline",
+			},
+		],
 	}, {
 		label: "Kontakt",
 		icon: "i-lucide-box",
