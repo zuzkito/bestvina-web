@@ -41,13 +41,13 @@ if (!page.value) {
 const sections = computed(() => {
 	if (pageId.value === allPeoplePageId) {
 		return [{
-			name: "Všichni organizátoři abecedně",
+			name: "Abecední řazení",
 			people: allActivePeopleSorted.value,
 		}];
 	}
 	if (pageId.value === PEOPLE_PAGES.FORMER) {
 		return [{
-			name: "Všichni bývalí organizátoři abecedně",
+			name: "Abecední řazení",
 			people: allFormerPeopleSorted.value,
 		}];
 	}
@@ -94,7 +94,7 @@ updatePageStatus();
 		/>
 		<div
 			v-if="section.people.length > 0"
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-8 pb-8"
+			class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] justify-items-center gap-8 pb-8"
 		>
 			<PersonCard
 				v-for="(person, i) in section.people"
@@ -102,13 +102,10 @@ updatePageStatus();
 				:person="person"
 			/>
 		</div>
-		<div v-else>
-			zatim nikdo
-		</div>
 	</UScrollArea>
 	<InDevelopment
 		v-else-if="pageStatus === 'empty'"
-		description="Tato sekce se zatím stydí ukázat se veřejnosti. 🫣"
+		description="Tato sekce se ještě stydí ukázat se veřejnosti. 🫣"
 	/>
 </template>
 

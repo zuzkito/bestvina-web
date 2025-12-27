@@ -13,24 +13,26 @@ defineProps<{
 	<UCard
 		v-if="person"
 		:ui="{
-			root: 'bg-primary-500/8 flex flex-col w-3/4 md:w-full',
+			root: 'bg-primary-500/8 flex flex-col w-full',
 			header: 'flex flex-col items-center !p-0 mx-0',
 			body: 'h-full !p-4',
 			footer: 'flex flex-col items-center gap-4',
 		}"
 	>
 		<template #header>
-			<NuxtImg
-				v-if="person.image"
-				:src="person.image"
-				class="object-cover w-full aspect-square"
-				preset="thumbnailMd"
-			/>
 			<div
-				v-else
-				class="object-cover w-full aspect-square bg-elevated flex justify-center items-center"
+				v-if="person.image"
+				class="object-cover w-full aspect-3/2 bg-elevated flex justify-center items-center"
 			>
+				<NuxtImg
+					v-if="person.image"
+					:src="person.image"
+					class="object-cover w-full aspect-3/2"
+					preset="thumbnailMd"
+				/>
+
 				<UIcon
+					v-else
 					class="text-primary"
 					name="i-lucide-user-round"
 					size="96"
@@ -43,10 +45,10 @@ defineProps<{
 					{{ person.name }}
 				</p>
 				<p
-					v-if="!person.roleTitle"
+					v-if="person.roleTitle"
 					class="text-muted"
 				>
-					{{ person.roleTitle || "nazev role" }}
+					{{ person.roleTitle }}
 				</p>
 			</div>
 		</template>
@@ -54,7 +56,7 @@ defineProps<{
 		<template #default>
 			<div
 				v-if="person.description"
-				class="flex flex-col gap-4 whitespace-pre-wrap text-sm"
+				class="flex flex-col gap-4 whitespace-pre-wrap text-sm text-justify"
 			>
 				{{ person.description }}
 			</div>
