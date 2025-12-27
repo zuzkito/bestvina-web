@@ -5,7 +5,6 @@ export default <RouterConfig> {
 	scrollBehavior(to, from, savedPosition) {
 		// when going back, return to the same position
 		if (savedPosition) {
-			console.log(savedPosition);
 			return savedPosition;
 		}
 

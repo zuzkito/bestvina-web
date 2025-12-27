@@ -11,6 +11,6 @@ pages:
   aktivni_chemie:
     role: ""
     description: "description for chemistry"
-    name: "Kubik"
+    name: ""
 ---
 Some text about Jakub
