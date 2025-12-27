@@ -21,7 +21,7 @@ const contacts = ref([
 		role: "hlavní vedoucí",
 		organization: "Katedra anorganické chemie,\nPřírodovědecká fakulta Univerzita Karlova",
 		address: "Hlavova 2030/8\n128 00, Praha 2",
-		img: "imgs/people/kotek_jan.jpg",
+		img: "imgs/people/contacts/kotek_jan.jpg",
 		email: "modrej@natur.cuni.cz",
 	},
 	{
@@ -29,7 +29,7 @@ const contacts = ref([
 		role: "tajemnice Chemické olympiády",
 		organization: "Ústav učitelství chemie a humanitních věd,\nVysoká škola chemicko-technologická v Praze",
 		address: "Technická 5\n168 28, Praha 6",
-		img: "imgs/people/kotkova_zuzana.jpg",
+		img: "imgs/people/contacts/kotkova_zuzana.jpg",
 		email: "Zuzana.Kotkova@vscht.cz",
 	},
 	{
@@ -37,7 +37,7 @@ const contacts = ref([
 		role: "tajemnice Biologické olympiády",
 		organization: "Katedra buněčné biologie,\nPřírodovědecká fakulta Univerzita Karlova",
 		address: "Viničná 7\n128 04, Praha 2",
-		img: "imgs/people/libusova_lenka.jpg",
+		img: "imgs/people/contacts/libusova_lenka.jpg",
 		email: "lenka.libusova@natur.cuni.cz",
 	},
 ]);
