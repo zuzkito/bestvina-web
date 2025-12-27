@@ -18,7 +18,7 @@ export default defineContentConfig({
 
 		people: defineCollection({
 			type: "data",
-			source: "people/individuals/**.md",
+			source: "people/individuals/**/*.md",
 			schema: z.object({
 				name: z.string(),
 				nickname: z.string().optional(),

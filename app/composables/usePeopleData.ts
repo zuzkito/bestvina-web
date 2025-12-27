@@ -23,7 +23,9 @@ export default function () {
 			person.description = selectedPagePersonData.description || person.description;
 			person.nickname = selectedPagePersonData.nickname || person.nickname;
 			person.image = selectedPagePersonData.image || person.image;
+			// @ts-expect-error unresolved reference
 			person.roleTitle = selectedPagePersonData.roleTitle;
+			// @ts-expect-error unresolved reference
 			person.role = selectedPagePersonData.role;
 		}
 		return person;
