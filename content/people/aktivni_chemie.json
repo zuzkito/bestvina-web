@@ -1,0 +1,23 @@
+{
+  "header": "chemie",
+  "sections": [
+    {
+      "name": "Laboranti",
+      "people": [
+        "ferencik_jakub",
+        "person1",
+        "ferencik_jakub",
+        "person1",
+        "ferencik_jakub",
+        "person1"
+      ]
+    },
+    {
+      "name": "Prednasejici",
+      "people": [
+        "ferencik_jakub",
+        "person1"
+      ]
+    }
+  ]
+}

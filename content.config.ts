@@ -1,4 +1,5 @@
 import { defineCollection, defineContentConfig, z } from "@nuxt/content";
+import { PEOPLE_PAGES_ID_VALUES, PERSON_ROLES_ID_VALUES } from "./shared/constants";
 
 export default defineContentConfig({
 	collections: {
@@ -16,14 +17,74 @@ export default defineContentConfig({
 		}),
 
 		people: defineCollection({
-			source: "lide/*.json",
 			type: "data",
+			source: "people/individuals/**.md",
 			schema: z.object({
-				peoples: z.object({
-					name: z.string(),
-					description: z.string(),
-					image: z.string(), // path to image
-				}).array(),
+				name: z.string(),
+				nickname: z.string().optional(),
+				degreesBeforeName: z.string().optional(),
+				degreesAfterName: z.string().optional(),
+				description: z.string().optional(),
+				image: z.string().optional(),
+				isFormer: z.boolean().default(false),
+				isHidden: z.boolean().default(false),
+				// ... other fields (to be added later) ...
+				pages: z.record(
+					z.enum(PEOPLE_PAGES_ID_VALUES),
+					z.object({
+						role: z.enum(PERSON_ROLES_ID_VALUES).optional(),
+						roleTitle: z.string().optional(),
+						description: z.string().optional(),
+						name: z.string().optional(),
+						image: z.string().optional(),
+						nickname: z.string().optional(),
+					}),
+				),
+				// fields: z.record(
+				// 	z.enum(PERSON_FIELDS_ID_VALUES),
+				// 	z.object({
+				// 		roles: z.record(
+				// 			z.enum(PERSON_ROLES_ID_VALUES),
+				// 			z.object({
+				// 				roleTitle: z.string().optional(),
+				// 				image: z.string().optional(),
+				// 				nickname: z.string().optional(),
+				// 				description: z.string().optional(),
+				// 			}),
+				// 		),
+				// 	}).optional(),
+				// ).optional(),
+			}),
+			// 	.transform((person) => {
+			// 	// if no special image supplied for a given role, use the root one
+			// 	if (person.fields.roles) {
+			// 		Object.values(person.fields).forEach((field) => {
+			// 			if (!field.roles)
+			// 				return;
+			// 			Object.values(field.roles).forEach((role) => {
+			// 				role.image = person.image;
+			// 			});
+			// 		});
+			// 	}
+			// 	return person;
+			// }),
+		}),
+
+		peoplePages: defineCollection({
+			type: "data",
+			source: `people/*.json`,
+			schema: z.object({
+				title: z.string().optional(),
+				description: z.string().optional(),
+				header: z.string().optional(),
+				headerText: z.string().optional(),
+				sections: z.array(
+					z.object({
+						name: z.string().optional(),
+						description: z.string().optional(),
+						people: z.array(z.string()),
+					}),
+				),
 			}),
 		}),
 	},
