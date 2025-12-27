@@ -3,9 +3,8 @@ import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 export default defineContentConfig({
 	collections: {
 		years: defineCollection({
-			source: "rocniky/*.(yml|md)",
+			source: "years/**.(yml|md)",
 			type: "page",
-			// Define custom schema for docs collection
 			schema: z.object({
 				year: z.number().int(),
 				coverImg: z.string(), // path to image

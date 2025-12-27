@@ -9,7 +9,7 @@ definePageMeta({
 
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => {
-	return queryCollection("years").path(route.path).first();
+	return queryCollection("years").where("year", "=", route.params.slug).first();
 });
 
 const startDate = new Date(page.value?.startDate ?? "");
