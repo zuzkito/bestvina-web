@@ -2,21 +2,23 @@
   "header": "chemie",
   "sections": [
     {
-      "name": "Laboranti",
+      "name": "Chemická laboratoř",
       "people": [
-        "ferencik_jakub",
-        "person1",
-        "ferencik_jakub",
-        "person1",
-        "ferencik_jakub",
-        "person1"
+        "chlab/mika_ludek",
+        "chlab/ledvinka_jiri",
+        "chlab/mikulastik_jakub",
+        "chlab/kablukov_vadim",
+        "chlab/ferencik_jakub",
+        "chlab/hybnerova_zuzana",
+        "chlab/slivova_andrea"
       ]
     },
     {
-      "name": "Prednasejici",
+      "name": "Přednášející",
       "people": [
-        "ferencik_jakub",
-        "person1"
+        "slavicek_petr",
+        "nemirovich_tatiana",
+        "danek_ondrej"
       ]
     }
   ]
