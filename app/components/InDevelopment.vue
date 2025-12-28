@@ -7,6 +7,7 @@ interface InDevelopmentProps {
 	icon?: string;
 	action?: ButtonProps;
 	withPageWrapper?: boolean;
+	showActions?: boolean;
 }
 
 const props = withDefaults(defineProps<InDevelopmentProps>(), {
@@ -15,18 +16,22 @@ const props = withDefaults(defineProps<InDevelopmentProps>(), {
 	icon: "i-proicons-skull", // "i-ph-skull",
 	action: undefined,
 	withPageWrapper: true,
+	showActions: true,
 });
 
-const actions: ButtonProps[] = [{
-	icon: "i-lucide-home",
-	label: "Domovská stránka",
-	color: "neutral",
-	variant: "outline",
-	to: "/",
-}];
+const actions: ButtonProps[] = [];
 
-if (props.action) {
-	actions.push(props.action);
+if (props.showActions) {
+	actions.push({
+		icon: "i-lucide-home",
+		label: "Domovská stránka",
+		color: "neutral",
+		variant: "outline",
+		to: "/",
+	});
+	if (props.action) {
+		actions.push(props.action);
+	}
 }
 </script>
 
