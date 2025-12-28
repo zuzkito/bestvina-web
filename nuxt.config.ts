@@ -43,6 +43,8 @@ export default defineNuxtConfig({
 		dirs: [
 			"hooks",
 			"utils",
+			"models/**",
+			"types/**",
 		],
 	},
 	devtools: {
@@ -81,6 +83,18 @@ export default defineNuxtConfig({
 			componentDetection: true,
 		},
 		colorMode: true,
+	},
+	routeRules: {
+		// Homepage pre-rendered at build time
+		"/": { prerender: true },
+		"/kronika": { prerender: true },
+		"/kronika/**": { prerender: true },
+		"/lide": { prerender: true },
+		"/kontakt": { prerender: true },
+		"/galerie": { ssr: false },
+		"/informace": { prerender: true },
+		"/_studio": { ssr: true },
+		"/api/**": { cors: true, prerender: true },
 	},
 	compatibilityDate: "2025-11-30",
 	nitro: {
