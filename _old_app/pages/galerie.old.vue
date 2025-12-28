@@ -102,11 +102,11 @@ function reloadFilters() {
 	selectedPhotographers.value = currentlySelectedPhotographers.value;
 	numYearsToShow.value = 0;
 	Object.assign(yearImagesLoadedStatus, {});
-	console.log(selectedYears.value);
-	console.log(selectedPhotographers.value);
-	console.log(numYearsToShow.value);
-	console.log(yearImagesLoadedStatus);
-	console.log(loadedYears.value);
+	// console.log(selectedYears.value);
+	// console.log(selectedPhotographers.value);
+	// console.log(numYearsToShow.value);
+	// console.log(yearImagesLoadedStatus);
+	// console.log(loadedYears.value);
 }
 </script>
 

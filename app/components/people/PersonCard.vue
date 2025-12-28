@@ -9,7 +9,6 @@ const props = defineProps<{
 	pageId: string;
 	showImage: boolean;
 }>();
-console.log(props.person.name, props.showImage);
 </script>
 
 <template>

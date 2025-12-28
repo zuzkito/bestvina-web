@@ -90,7 +90,6 @@ function selectPlural(forCount: number | undefined, plurals: Record<number, stri
 	}
 	return defaultValue;
 }
-console.log(sections.value);
 </script>
 
 <template>
