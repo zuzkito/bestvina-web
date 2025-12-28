@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import type { PeopleCollectionItem } from "@nuxt/content";
 
-defineProps<{
+const props = defineProps<{
 	person: PeopleCollectionItem & {
 		roleTitle: string | undefined;
 		role: string | undefined;
 	};
+	pageId: string;
+	showImage: boolean;
 }>();
+console.log(props.person.name, props.showImage);
 </script>
 
 <template>
@@ -21,7 +24,7 @@ defineProps<{
 	>
 		<template #header>
 			<div
-				v-if="person.image"
+				v-if="showImage"
 				class="object-cover w-full aspect-3/2 bg-elevated flex justify-center items-center"
 			>
 				<NuxtImg

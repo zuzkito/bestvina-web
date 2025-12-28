@@ -2,13 +2,15 @@
   "header": "biologie",
   "sections": [
     {
-      "name": "Laboranti",
+      "name": "",
+      "showImages": false,
       "people": [
-
+        "martinek_jan",
+        "bohutinsky_daniel"
       ]
     },
     {
-      "name": "Prednasejici",
+      "name": "",
       "people": [
 
       ]

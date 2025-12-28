@@ -26,8 +26,8 @@ export default defineContentConfig({
 				degreesAfterName: z.string().optional(),
 				description: z.string().optional(),
 				image: z.string().optional(),
-				isFormer: z.boolean().default(false),
-				isHidden: z.boolean().default(false),
+				isFormer: z.boolean().catch(false),
+				isHidden: z.boolean().catch(false),
 				// ... other fields (to be added later) ...
 				pages: z.record(
 					z.enum(PEOPLE_PAGES_ID_VALUES),
@@ -83,6 +83,7 @@ export default defineContentConfig({
 						name: z.string().optional(),
 						description: z.string().optional(),
 						people: z.array(z.string()),
+						showImages: z.boolean().catch(true),
 					}),
 				),
 			}),
