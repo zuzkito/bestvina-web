@@ -88,5 +88,14 @@ export default defineContentConfig({
 				),
 			}),
 		}),
+
+		aboutCampPage: defineCollection({
+			type: "page",
+			source: "about_camp/*.md",
+			schema: z.object({
+				title: z.string().optional(),
+				description: z.string().optional(),
+			}),
+		}),
 	},
 });
