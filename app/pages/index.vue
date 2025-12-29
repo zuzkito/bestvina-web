@@ -12,7 +12,7 @@ const scrollDownALittle = () => {
 <template>
 	<div>
 		<NuxtImg
-			class="object-cover w-full h-full opacity-7 dark:opacity-10 fixed top-0 left-0 right-0 bottom-0 z-[-999]"
+			class="object-cover w-full h-full opacity-7 dark:opacity-7 fixed top-0 left-0 right-0 bottom-0 z-[-999] blur-lg"
 			src="imgs/hero_bg.svg"
 		/>
 		<UMain>
