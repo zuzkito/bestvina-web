@@ -14,18 +14,21 @@ const router = useRouter();
 const tabs: TabsItem[] = [
 	{
 		label: "Obecně",
-		icon: "i-mdi-people-group",
+		icon: "i-lucide-badge-info",
 		value: "obecne",
+		slot: "general",
 	},
 	{
-		label: "Chemická sekce",
+		label: "Chemie",
 		icon: "i-lucide-flask-conical",
 		value: "chemie",
+		slot: "chemistry",
 	},
 	{
-		label: "Biologická sekce",
+		label: "Biologie",
 		icon: "i-mdi-bacteria-outline",
 		value: "biologie",
+		slot: "biology",
 	},
 ];
 
@@ -65,28 +68,20 @@ const checkInitialRouteQueryParameter = () => {
 		currentTab.value = selectedTabFromQuery;
 	}
 };
-
-if (import.meta.client) {
-	checkInitialRouteQueryParameter();
-}
+checkInitialRouteQueryParameter();
 
 /**
  * FETCH PAGE DATA
  * */
 const { pageData } = useAboutCamp();
 const { data: rootPage } = await pageData("root");
+const { data: pageGeneral } = await pageData(tabs[0]!.value as string);
+const { data: pageChemistry } = await pageData(tabs[1]!.value as string);
+const { data: pageBiology } = await pageData(tabs[2]!.value as string);
+
 if (!rootPage) {
 	throw createError({ statusCode: 404, statusMessage: "Stránka nenalezena!", fatal: true });
 }
-
-const { data: page } = await pageData(currentTab);
-
-console.log(page.value);
-
-const pageMounted = ref<boolean>(false);
-onMounted(() => {
-	pageMounted.value = true;
-});
 </script>
 
 <template>
@@ -100,14 +95,36 @@ onMounted(() => {
 			<ClientOnly>
 				<UTabs
 					v-model="currentTab"
-					:content="false"
+					:content="true"
 					:items="tabs"
 					:ui="{
 						leadingIcon: 'hidden md:block',
 					}"
 					color="secondary"
 					variant="pill"
-				/>
+				>
+					<template #general>
+						<ContentRenderer
+							v-if="pageGeneral"
+							:key="currentTab"
+							:value="pageGeneral"
+						/>
+					</template>
+					<template #chemistry>
+						<ContentRenderer
+							v-if="pageChemistry"
+							:key="currentTab"
+							:value="pageChemistry"
+						/>
+					</template>
+					<template #biology>
+						<ContentRenderer
+							v-if="pageBiology"
+							:key="currentTab"
+							:value="pageBiology"
+						/>
+					</template>
+				</UTabs>
 				<template #fallback>
 					<div class="w-full h-full flex flex-row justify-center items-center my-16">
 						<UIcon
@@ -118,11 +135,6 @@ onMounted(() => {
 					</div>
 				</template>
 			</ClientOnly>
-
-			<ContentRenderer
-				v-if="pageMounted && page"
-				:value="page"
-			/>
 
 			<!--			<InDevelopment
 				:with-page-wrapper="false"
