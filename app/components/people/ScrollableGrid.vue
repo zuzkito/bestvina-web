@@ -31,14 +31,17 @@ else if (pageId.value === PEOPLE_PAGES.FORMER) {
 	allFormerPeopleSorted.value = data.value;
 }
 const { data: page } = await getPopulatedPageData(pageId);
-if (!page.value) {
-	pageStatus.value = "error";
-}
 
 /**
  * EXTRACT SECTIONS
  * */
-const sections = computed(() => {
+interface Section {
+	name: string;
+	showImages?: boolean;
+	people: PeopleCollectionItemExtended[];
+}
+
+const sections = computed<Section[] | undefined>(() => {
 	if (pageId.value === allPeoplePageId) {
 		return [{
 			name: "Abecední řazení",
@@ -53,7 +56,7 @@ const sections = computed(() => {
 			people: allFormerPeopleSorted.value,
 		}];
 	}
-	return page.value?.sections;
+	return page.value?.sections as Section[] | undefined;
 });
 function updatePageStatus() {
 	if (!page.value) {
@@ -68,7 +71,7 @@ function updatePageStatus() {
 		pageStatus.value = "empty";
 		return;
 	}
-	const peopleCount = sections.value.filter(section => section.people.length > 0);
+	const peopleCount = sections.value?.filter(section => section.people?.length > 0);
 	if (peopleCount?.length === 0) {
 		pageStatus.value = "empty";
 		return;
@@ -100,31 +103,38 @@ function selectPlural(forCount: number | undefined, plurals: Record<number, stri
 		:ui="{
 			viewport: 'gap-4',
 		}"
-		class="w-full py-8"
+		class="w-full pb-8"
 	>
-		<div class="flex flex-row justify-between items-center pb-8">
-			<div>
-				<PageSubHeader
-					v-if="section.name"
-					:title="section.name"
-					class="p-0!"
-				/>
-			</div>
-			<span class="text-muted">
-				celkem: {{ section.people.length }} {{ selectPlural(section.people.length, { 0: "osob", 1: "osoba", 2: "osoby", 5: "osob" }) }}
-			</span>
-		</div>
 		<div
 			v-if="section.people.length > 0"
-			class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] justify-items-center gap-8 pb-8"
 		>
-			<PersonCard
-				v-for="(person, i) in section.people"
-				:key="pageId+person.id"
-				:page-id="pageId"
-				:person="person"
-				:show-image="section.showImages ?? true"
+			<USeparator
+				v-if="index != 0"
+				class="my-4"
 			/>
+			<div class="flex flex-row justify-between items-center my-4">
+				<div>
+					<PageSubHeader
+						:id="section.name.replace(' ', '_').toLowerCase()"
+						:title="section.name || ''"
+						class="p-0!"
+					/>
+				</div>
+				<span class="text-muted text-sm md:text-md text-right min-w-1/3">
+					celkem: {{ section.people.length }} {{ selectPlural(section.people.length, { 0: "osob", 1: "osoba", 2: "osoby", 5: "osob" }) }}
+				</span>
+			</div>
+			<div
+				class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] justify-items-center gap-8"
+			>
+				<PersonCard
+					v-for="(person, i) in section.people"
+					:key="person.id"
+					:page-id="pageId"
+					:person="person"
+					:show-image="section.showImages ?? true"
+				/>
+			</div>
 		</div>
 	</UScrollArea>
 	<InDevelopment
