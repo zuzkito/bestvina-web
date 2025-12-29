@@ -25,14 +25,11 @@ const { data: groupImages } = await useGroupImages(props.year);
 				:key="i"
 				@click="openImageModal(img.filepath)"
 			>
-				<LazyNuxtImg
+				<NuxtImg
 					v-slot="{ src, isLoaded, imgAttrs }"
 					:custom="true"
 					:src="img.filepath"
-					class="rounded-md md:hover:scale-110 transition-transform"
 					height="300"
-					lazy="blur"
-					loading="lazy"
 					preset="thumbnailMd"
 				>
 					<!-- Show the actual image when loaded -->
@@ -54,7 +51,7 @@ const { data: groupImages } = await useGroupImages(props.year);
 						v-else
 						class="w-full aspect-square"
 					/>
-				</LazyNuxtImg>
+				</NuxtImg>
 			</a>
 		</UPageGrid>
 	</div>

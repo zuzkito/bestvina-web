@@ -8,8 +8,11 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => {
-	return queryCollection("years").where("year", "=", route.params.slug).first();
+const routePathEnglish = route.path.replace("rocniky", "years");
+
+const { data: page } = await useAsyncData(routePathEnglish, () => {
+	// return queryCollection("years").where("year", "=", route.params.slug).first();
+	return queryCollection("years").path(routePathEnglish).first();
 });
 
 const startDate = new Date(page.value?.startDate ?? "");
@@ -26,13 +29,12 @@ if (!page.value || !page.value.year) {
 const isCurrentYear = ref(page.value?.year == CURRENT_YEAR || false);
 
 // get surroundings for navigation
-const surround = await getSurroundings();
 async function getSurroundings() {
-	const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-		return queryCollectionItemSurroundings("years", route.path, {
+	const { data: surround } = await useAsyncData(`${routePathEnglish}-surround`, () => {
+		return queryCollectionItemSurroundings("years", routePathEnglish, {
 			fields: ["year", "theme", "title", "description"],
-		})
-			.where("year", "<>", CURRENT_YEAR).order("year", "DESC");
+		}).where("year", "<>", CURRENT_YEAR)
+			.order("year", "DESC");
 	});
 
 	// replace the default title and description with year and theme, respectively
@@ -40,10 +42,12 @@ async function getSurroundings() {
 		if (item) {
 			item.description = `Ročník ${item.year || "´???"}`;
 			item.title = item.theme as string || "";
+			item.path = item.path.replace("years", "rocniky");
 		}
 	});
 	return surround;
 }
+const surround = await getSurroundings();
 </script>
 
 <template>
