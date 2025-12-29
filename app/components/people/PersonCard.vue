@@ -30,7 +30,7 @@ const props = defineProps<{
 					v-if="person.image"
 					:src="person.image"
 					class="object-cover w-full aspect-3/2"
-					preset="thumbnailMd"
+					preset="thumbnailLg"
 				/>
 
 				<UIcon
