@@ -1,7 +1,7 @@
 ---
 name: "Jiří Ledvinka"
-image: "/imgs/cat4.jpg"
 nickname: "Jirka"
+image: "/imgs/people/individuals/chlab/ledvinka_jiri.jpg"
 description: ""
 
 degreesBeforeName: ""

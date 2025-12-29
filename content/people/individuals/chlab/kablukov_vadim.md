@@ -1,6 +1,6 @@
 ---
 name: "Vadim Kablukov"
-image: "/imgs/cat3.jpg"
+image: "/imgs/people/individuals/chlab/kablukov_vadim.jpg"
 nickname: "Pyroslav"
 description: ""
 

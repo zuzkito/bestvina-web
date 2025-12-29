@@ -1,6 +1,6 @@
 ---
 name: "Luděk Míka"
-image: "/imgs/cat1.jpg"
+image: "/imgs/people/individuals/chlab/mika_ludek.jpg"
 nickname: "Lumec"
 description: |
   Luděk, kterému nikdo neřekne jinak než Lumec, má ještě v živé paměti vzpomínky na červenec roku 2004, kdy odjel rodičům na čtrnáct dní na Běstvinu a vrátil se změněný k nepoznání. Obzvláště co se barvy oblečení týče... Jeho prvním oddílovým vedoucím byl, v té době ještě ne-hlavní-vedoucí Honza Kotek. V následujících letech vystřídal i ostatní vzory oddíláků.

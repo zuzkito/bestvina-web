@@ -17,6 +17,6 @@ pages:
     name: ""
   vedeni:
     role: ""
-    roleTitle: ""
+    roleTitle: "Hlavní hospodářka"
     description: ""
 ---

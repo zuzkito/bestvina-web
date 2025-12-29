@@ -1,6 +1,6 @@
 ---
 name: "Zuzana Hybnerová"
-image: "/imgs/cat2.jpg"
+image: "/imgs/people/individuals/chlab/hybnerova_zuzana.jpg"
 nickname: "Zuzka"
 description: ""
 

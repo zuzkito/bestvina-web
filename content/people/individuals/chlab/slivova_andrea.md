@@ -1,6 +1,6 @@
 ---
 name: "Andrea Slívová"
-image: "/imgs/cat1.jpg"
+image: "/imgs/people/individuals/chlab/slivova_andrea.jpg"
 nickname: "Andy"
 description: ""
 

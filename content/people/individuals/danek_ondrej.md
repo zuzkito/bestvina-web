@@ -1,6 +1,6 @@
 ---
 name: "Ondřej Daněk"
-image: ""
+image: "/imgs/people/individuals/danek_ondrej.jpg"
 nickname: "Ondra"
 description: ""
 
