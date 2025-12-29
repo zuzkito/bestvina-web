@@ -3,9 +3,9 @@ import type { ButtonProps } from "#ui/components/Button.vue";
 
 const features = ref([
 	{
-		title: "Náskok před ostatními",
+		title: "Rozšíření obzorů",
 		description:
-        "Během 14 dnů načerpáš vědomosti a dovednosti, ke kterým se ve škole běžně nedostaneš. "
+        "Během 14 dnů načerpáš vědomosti a dovednosti, které ti škola běžně nedá. "
         + "Získáš obrovskou výhodu nejen do dalších ročníků olympiád, ale i pro budoucí studium na vysoké škole. "
         + "Naučíš se dívat na svět kolem sebe v jazyce přírodních věd.",
 		icon: "i-lucide-rocket",
