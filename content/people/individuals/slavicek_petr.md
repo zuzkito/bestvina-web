@@ -1,6 +1,6 @@
 ---
 name: "Petr Slavíček"
-image: ""
+image: "/imgs/cat1.jpg"
 nickname: ""
 description: |
   Spolu s Honzou Kotkem patří Petr Slavíček k největším pamětníkům, neboť na Běstvinu přijel poprvé jako mladý holobradý studentík mezi prvním a druhým ročníkem gymnázia v roce 1991. Dnes sice musí občas oholit tváře, však mladický duch tomuto profesorovi působícímu na VŠCHT v Praze zůstal. Je velkolepým velitelem ranních rozcviček a přednáší fyzikálně-chemickou tematiku.

@@ -1,6 +1,6 @@
 ---
 name: "Jan Matínek"
-image: ""
+image: "/imgs/cat3.jpg"
 nickname: "Mumínek"
 description: |
   Biologicky zvaný Mumínek (bílý) má své ortogonální dvojče (tzv. Mumínka černého). Pochází z velkolíhně talentů v Ostrově nad Ohří. Studuje experimentální biologii rostlin na Přírodovědecké fakultě UK v Praze a na Běstvině se často vyskytuje poblíž laboratoře.

@@ -1,6 +1,6 @@
 ---
 name: "Zuzana Kotková"
-image: ""
+image: "/imgs/cat4.jpg"
 nickname: "Zuzka"
 description: |
   Zuzka Kotková, profesí chemička (studentka doktorského studia na Katedře anorganické chemie PřF UK v Praze), nyní hlavně matka, je hlavní hospodářkou LOS v Běstvině.

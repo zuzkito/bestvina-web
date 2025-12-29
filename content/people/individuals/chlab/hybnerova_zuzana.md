@@ -4,7 +4,7 @@ image: "/imgs/people/individuals/chlab/hybnerova_zuzana.jpg"
 nickname: "Zuzka"
 description: ""
 
-degreesBeforeName: ""
+degreesBeforeName: "Bc."
 degreesAfterName: ""
 
 pages:

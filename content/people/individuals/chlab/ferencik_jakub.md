@@ -1,6 +1,6 @@
 ---
 name: "Jakub Ferenčík" # only mandatory property
-image: "" # /imgs/people/xxx.jpg
+image: "/imgs/cat1.jpg" # /imgs/people/xxx.jpg
 nickname: ""
 description: ""
 
@@ -10,7 +10,7 @@ degreesAfterName: ""
 pages:
   aktivni_chemie:
     role: ""
-    description: "description for chemistry"
+    description: ""
     name: ""
 ---
 Some text about Jakub

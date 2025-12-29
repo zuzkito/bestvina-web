@@ -1,6 +1,6 @@
 ---
 name: "Jan Kotek"
-image: ""
+image: "/imgs/cat3.jpg"
 nickname: "Honza"
 description: |
   K seznámení Honzy Kotka s Běstvinou došlo v roce 1991, kdy tam přijel jako mladý a nepříliš úspěšný řešitel krajského kola kategorie C. Nicméně právě tento tábor v něm zažehl lásku k chemické olympiádě a k chemii vůbec, a rozhodl tak o jeho dalším studijním a profesním směřování. Od té doby jezdí na Běstvinu nepřetržitě, až dospěl k funkci hlavního vedoucího, kterou zastává již několik posledních let.

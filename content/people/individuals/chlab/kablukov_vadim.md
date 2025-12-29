@@ -4,13 +4,13 @@ image: "/imgs/people/individuals/chlab/kablukov_vadim.jpg"
 nickname: "Pyroslav"
 description: ""
 
-degreesBeforeName: ""
+degreesBeforeName: "MUDr."
 degreesAfterName: ""
 
 pages:
   aktivni_chemie:
     role: ""
-    roleTitle: "Programátor & Odpalovač"
+    roleTitle: "Programátor & grill master"
     description: ""
     name: ""
 ---

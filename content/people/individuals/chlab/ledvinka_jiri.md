@@ -10,7 +10,7 @@ degreesAfterName: ""
 pages:
   aktivni_chemie:
     role: ""
-    roleTitle: "Organické prase"
+    roleTitle: "Organik"
     description: ""
     name: ""
 ---
