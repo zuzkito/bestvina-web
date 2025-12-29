@@ -11,16 +11,6 @@ const router = useRouter();
 const { getPageData } = usePeopleData();
 
 /**
- * INITIAL ROOT PAGE FETCH (without the tab contents)
- * */
-const rootPageId = PEOPLE_PAGES.ACTIVE;
-const { data: rootPage } = await getPageData(rootPageId);
-
-if (!rootPage.value) {
-	throw createError({ statusCode: 404, statusMessage: "Stránka nenalezena!", fatal: true });
-}
-
-/**
  * TABS INITIALIZATION
  * */
 const tabs: TabsItem[] = [
@@ -45,28 +35,60 @@ const tabs: TabsItem[] = [
 		value: "ostatni",
 	},
 ];
-const currentTab = computed({
-	get() {
-		return route.query.q as string || tabs[0]!.value;
-	},
-	set(tab: string) {
+
+const currentTab = ref(tabs[0]!.value as string);
+
+// sync currentTab ref with route query
+watch(() => route.query.t, (newTab) => {
+	if (newTab && tabs.some(tab => tab.value === newTab)) {
+		currentTab.value = newTab as string;
+	}
+}, { immediate: true });
+
+// update URL when tab changes
+watch(currentTab, (newTab) => {
+	if (newTab !== route.query.t) {
 		router.push({
 			path: "/lide",
-			query: { q: tab },
+			query: { t: newTab },
 		});
-	},
+	}
 });
-const pageId = computed(() => `${rootPageId}_${currentTab.value}`);
 
 const checkInitialRouteQueryParameter = () => {
-	const validRoutes = [...tabs.map(value => value.value), ""];
-	const currentPath = route.query.q as string || "";
+	const validTabValues = [...tabs.map(value => value.value), ""];
+	const selectedTabFromQuery = route.query.t as string;
 
-	if (!validRoutes.includes(currentPath)) {
-		currentTab.value = tabs[0]?.value as string;
+	if (!validTabValues.includes(selectedTabFromQuery)) {
+		// if non-existent tab requested, redirect to 'vsichni' tab
+		router.push({
+			path: "/lide",
+		});
+		currentTab.value = tabs[0]!.value as string;
+	}
+	else {
+		currentTab.value = selectedTabFromQuery;
 	}
 };
-checkInitialRouteQueryParameter();
+// onMounted(() => {
+// 	checkInitialRouteQueryParameter();
+// });
+
+if (import.meta.client) {
+	checkInitialRouteQueryParameter();
+}
+
+/**
+ * INITIAL ROOT PAGE FETCH (without the tab contents)
+ * */
+const rootPageId = PEOPLE_PAGES.ACTIVE;
+const { data: rootPage } = await getPageData(rootPageId);
+
+if (!rootPage.value) {
+	throw createError({ statusCode: 404, statusMessage: "Stránka nenalezena!", fatal: true });
+}
+
+const pageId = computed(() => `${rootPageId}_${currentTab.value}`);
 </script>
 
 <template>
@@ -79,21 +101,30 @@ checkInitialRouteQueryParameter();
 			}"
 		/>
 
-		<UTabs
-			v-model="currentTab"
-			:content="true"
-			:items="tabs"
-			:ui="{
-				leadingIcon: 'hidden md:block',
-			}"
-			class="w-full h-full sticky"
-			color="secondary"
-			variant="pill"
-		/>
-
-		<PeopleScrollableGrid
-			:key="pageId"
-			:page-id="pageId"
-		/>
+		<ClientOnly>
+			<UTabs
+				v-model="currentTab"
+				:content="false"
+				:items="tabs"
+				:ui="{
+					leadingIcon: 'hidden md:block',
+				}"
+				color="secondary"
+				variant="pill"
+			/>
+			<PeopleScrollableGrid
+				:key="pageId"
+				:page-id="pageId"
+			/>
+			<template #fallback>
+				<div class="w-full h-full flex flex-row justify-center items-center my-16">
+					<UIcon
+						class="text-muted"
+						name="i-svg-spinners-bars-scale-middle"
+						size="48"
+					/>
+				</div>
+			</template>
+		</ClientOnly>
 	</UMain>
 </template>

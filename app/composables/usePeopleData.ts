@@ -146,7 +146,9 @@ export default function () {
 					id: page.stem.replace("people/", ""),
 					sections: page.sections?.map(section => ({
 						...section,
-						people: section.people.map(personId => peopleMap.get(personId)).filter(person => !!person),
+						people: section.people
+							?.map(personId => peopleMap.get(personId))
+							.filter(person => !!person),
 					})) || [],
 				};
 			},
