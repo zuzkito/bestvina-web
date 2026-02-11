@@ -10,10 +10,20 @@ export default <RouterConfig> {
 
 		// if anchor hash specified, go to that element
 		if (to.hash) {
-			return {
-				el: to.hash,
-				behavior: "smooth",
-			};
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					resolve({
+						el: to.hash,
+						behavior: "smooth",
+						top: 80,
+					});
+				}, 200);
+			});
+		}
+
+		// if only query parameters changed (same path), don't scroll
+		if (to.path === from.path) {
+			return false;
 		}
 
 		// else, go to top
