@@ -93,8 +93,11 @@ export default defineContentConfig({
 				theme: z.string(),
 				startDate: z.date(),
 				endDate: z.date(),
-			}),
 
+				price: z.number().int().optional(),
+				registrationLink: z.string().optional(),
+				registrationEndDate: z.date(),
+			}),
 		}),
 
 		people: defineCollection({

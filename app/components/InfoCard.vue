@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
 	title: string;
-	description: string;
+	description?: string;
 	icon?: string;
 	iconColorClass?: string;
 	to?: string;
@@ -49,15 +49,18 @@ defineSlots<{
 					<h3 class="text-xl font-bold mb-2">
 						{{ title }}
 					</h3>
-					<p class="text-muted leading-relaxed mb-4 md:mb-8">
+					<p
+						v-if="description"
+						class="text-muted leading-relaxed mb-4 md:mb-8"
+					>
 						{{ description }}
 					</p>
-					<!-- Extra text-side content (e.g. CardAddressBlock) -->
+					<!-- Extra content -->
 					<slot name="extra" />
 				</div>
 			</div>
 
-			<!-- Secondary column (e.g. map) -->
+			<!-- Secondary column -->
 			<slot name="secondary" />
 		</div>
 
@@ -88,13 +91,13 @@ defineSlots<{
 				</div>
 			</div>
 
-			<!-- Secondary row (e.g. timeline) -->
+			<!-- Secondary row -->
 			<div class="px-6 pb-6 grow">
 				<slot name="secondary" />
 			</div>
 		</div>
 
-		<!-- Single (default) layout -->
+		<!-- Single layout -->
 		<template v-else>
 			<div
 				v-if="icon"
