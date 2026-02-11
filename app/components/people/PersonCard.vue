@@ -15,7 +15,7 @@ const props = defineProps<{
 	<UCard
 		v-if="person"
 		:ui="{
-			root: 'bg-primary-500/8 flex flex-col w-full',
+			root: 'bg-muted flex flex-col w-full',
 			header: 'flex flex-col items-center !p-0 mx-0',
 			body: 'h-full !p-4',
 			footer: 'flex flex-col items-center gap-4',

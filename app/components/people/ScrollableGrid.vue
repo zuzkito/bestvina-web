@@ -112,7 +112,7 @@ function selectPlural(forCount: number | undefined, plurals: Record<number, stri
 				v-if="index != 0"
 				class="my-4"
 			/>
-			<div class="flex flex-row justify-between items-center my-4">
+			<div class="flex flex-row justify-between items-center my-4 min-h-8">
 				<div>
 					<PageSubHeader
 						:id="section.name.replace(' ', '_').toLowerCase()"
@@ -125,7 +125,7 @@ function selectPlural(forCount: number | undefined, plurals: Record<number, stri
 				</span>
 			</div>
 			<div
-				class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))] justify-items-center gap-8"
+				class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(350px,1fr))] justify-items-center gap-8"
 			>
 				<PersonCard
 					v-for="(person, i) in section.people"

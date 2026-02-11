@@ -92,7 +92,7 @@ const pageId = computed(() => `${rootPageId}_${currentTab.value}`);
 </script>
 
 <template>
-	<UMain>
+	<UPage>
 		<UPageHeader
 			:description="rootPage?.headerText ?? ''"
 			:title="rootPage?.header ?? ''"
@@ -101,30 +101,34 @@ const pageId = computed(() => `${rootPageId}_${currentTab.value}`);
 			}"
 		/>
 
-		<ClientOnly>
-			<UTabs
-				v-model="currentTab"
-				:content="false"
-				:items="tabs"
-				:ui="{
-					leadingIcon: 'hidden md:block',
-				}"
-				color="secondary"
-				variant="pill"
-			/>
-			<PeopleScrollableGrid
-				:key="pageId"
-				:page-id="pageId"
-			/>
-			<template #fallback>
-				<div class="w-full h-full flex flex-row justify-center items-center my-16">
-					<UIcon
-						class="text-muted"
-						name="i-svg-spinners-bars-scale-middle"
-						size="48"
-					/>
-				</div>
-			</template>
-		</ClientOnly>
-	</UMain>
+		<UPageBody>
+			<ClientOnly>
+				<UTabs
+					v-model="currentTab"
+					:content="false"
+					:items="tabs"
+					:ui="{
+						root: 'mb-4',
+						leadingIcon: 'block 2xs:hidden md:block',
+						label: 'hidden 2xs:block',
+					}"
+					color="secondary"
+					variant="pill"
+				/>
+				<PeopleScrollableGrid
+					:key="pageId"
+					:page-id="pageId"
+				/>
+				<template #fallback>
+					<div class="w-full h-full flex flex-row justify-center items-center my-16">
+						<UIcon
+							class="text-muted"
+							name="i-svg-spinners-bars-scale-middle"
+							size="48"
+						/>
+					</div>
+				</template>
+			</ClientOnly>
+		</UPageBody>
+	</UPage>
 </template>

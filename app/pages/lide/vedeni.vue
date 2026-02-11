@@ -19,19 +19,16 @@ if (!page.value) {
 </script>
 
 <template>
-	<UMain>
+	<UPage>
 		<UPageHeader
 			:description="page?.headerText"
 			:title="page?.header"
 		/>
-
-		<PeopleScrollableGrid
-			:key="pageId"
-			:page-id="pageId"
-		/>
-	</UMain>
+		<UPageBody class="mt-0">
+			<PeopleScrollableGrid
+				:key="pageId"
+				:page-id="pageId"
+			/>
+		</UPageBody>
+	</UPage>
 </template>
-
-<style scoped>
-
-</style>
