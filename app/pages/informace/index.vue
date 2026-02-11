@@ -13,12 +13,6 @@ const router = useRouter();
  * */
 const tabs: TabsItem[] = [
 	{
-		label: "Obecně",
-		icon: "i-lucide-badge-info",
-		value: "obecne",
-		slot: "general",
-	},
-	{
 		label: "Chemie",
 		icon: "i-lucide-flask-conical",
 		value: "chemie",
@@ -57,7 +51,7 @@ const checkInitialRouteQueryParameter = () => {
 	const selectedTabFromQuery = route.query.t as string;
 
 	if (!validTabValues.includes(selectedTabFromQuery)) {
-		// if non-existent tab requested, redirect to 'obecne' tab
+		// if non-existent tab requested, redirect to the chemistry tab
 		router.push({
 			path: "/informace",
 			hash: route.hash,
@@ -74,72 +68,132 @@ checkInitialRouteQueryParameter();
  * FETCH PAGE DATA
  * */
 const { pageData } = useAboutCamp();
-const { data: rootPage } = await pageData("root");
-const { data: pageGeneral } = await pageData(tabs[0]!.value as string);
-const { data: pageChemistry } = await pageData(tabs[1]!.value as string);
-const { data: pageBiology } = await pageData(tabs[2]!.value as string);
+const { data: page } = await pageData("root");
 
-if (!rootPage) {
+if (!page.value) {
 	throw createError({ statusCode: 404, statusMessage: "Stránka nenalezena!", fatal: true });
 }
 </script>
 
 <template>
-	<UPage>
+	<UPage v-if="page">
 		<UPageHeader
-			v-if="rootPage"
-			:description="rootPage.description"
-			:title="rootPage.title"
+			:description="page.description"
+			:title="page.title"
 		/>
 		<UPageBody>
-			<ClientOnly>
-				<UTabs
-					v-model="currentTab"
-					:content="true"
-					:items="tabs"
-					:ui="{
-						leadingIcon: 'hidden md:block',
-					}"
-					color="secondary"
-					variant="pill"
-				>
-					<template #general>
-						<ContentRenderer
-							v-if="pageGeneral"
-							:key="currentTab"
-							:value="pageGeneral"
-						/>
-					</template>
-					<template #chemistry>
-						<ContentRenderer
-							v-if="pageChemistry"
-							:key="currentTab"
-							:value="pageChemistry"
-						/>
-					</template>
-					<template #biology>
-						<ContentRenderer
-							v-if="pageBiology"
-							:key="currentTab"
-							:value="pageBiology"
-						/>
-					</template>
-				</UTabs>
-				<template #fallback>
-					<div class="w-full h-full flex flex-row justify-center items-center my-16">
-						<UIcon
-							class="text-muted"
-							name="i-svg-spinners-bars-scale-middle"
-							size="48"
-						/>
-					</div>
-				</template>
-			</ClientOnly>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<InfoCard
+					v-if="page.targetPeople"
+					:description="page.targetPeople.text"
+					:icon="page.targetPeople.icon"
+					:title="page.targetPeople.title"
+				/>
 
-			<!--			<InDevelopment
-				:with-page-wrapper="false"
-				class="mt-48"
-			/> -->
+				<InfoCard
+					v-if="page.bestvinka"
+					:description="page.bestvinka.text"
+					:icon="page.bestvinka.icon"
+					:label="page.bestvinka.linkLabel"
+					:title="page.bestvinka.title"
+					:to="page.bestvinka.link"
+				/>
+
+				<InfoCard
+					v-if="page.schedule"
+					:description="page.schedule.text"
+					:icon="page.schedule.icon"
+					:title="page.schedule.title"
+					class="md:row-span-2"
+					layout="rows"
+				>
+					<template #secondary>
+						<AboutTimelineContainer :items="page.schedule.events" />
+					</template>
+				</InfoCard>
+
+				<InfoCard
+					v-if="page.location"
+					id="lokace"
+					:description="page.location.text"
+					:icon="page.location.icon"
+					:title="page.location.title"
+					class="md:col-span-2"
+					layout="columns"
+				>
+					<template #extra>
+						<CardAddressBlock
+							name="Táborová základna VŠCHT Praha"
+							street="Běstvina 155, 538 45 Běstvina"
+						/>
+					</template>
+					<template #secondary>
+						<AboutMapContainer :map-url="page.location.mapUrl" />
+					</template>
+				</InfoCard>
+
+				<InfoCard
+					v-if="page.activities"
+					:description="page.activities.text"
+					:icon="page.activities.icon"
+					:title="page.activities.title"
+					class="col-span-1 row-span-1"
+				/>
+			</div>
+			<section>
+				<div class="flex justify-center">
+					<UTabs
+						v-model="currentTab"
+						:content="true"
+						:items="tabs"
+						:ui="{
+							list: 'w-full md:w-1/2 rounded-full mb-8',
+							root: 'w-full md:w-3/4',
+							indicator: `rounded-full`,
+						}"
+						color="secondary"
+						size="xl"
+						variant="pill"
+					>
+						<template #chemistry>
+							<AboutTabbedCard
+								color="secondary"
+								description="adsfklajfkladjfaljfdlakjkldfaklsdjfakl;dsfjadskfl;afj; aksjfkad adjs fads fjkda jakl dfadsf"
+								image="/imgs/cat1.jpg"
+								title="Chemie"
+							/>
+						</template>
+
+						<template #biology>
+							<AboutTabbedCard
+								color="green"
+								description="adsfklajfkladjfaljfdlakjkldfaklsdjfakl;dsfjadskfl;afj; aksjfkad adjs fads fjkda jakl dfadsf"
+								image="/imgs/cat2.jpg"
+								reverse
+								title="Biologie"
+							/>
+						</template>
+					</UTabs>
+				</div>
+			</section>
+			<section v-if="page.accordion">
+				<PageSubHeader
+					:title="page.accordion.title as string"
+					class="text-center"
+				/>
+				<div class="flex justify-center pb-4">
+					<UAccordion
+						:items="page.accordion.items"
+						:ui="{
+							root: 'md:w-3/4 flex flex-col gap-4',
+							item: 'border last:border border-default rounded-lg transition-transform duration-300',
+							trigger: 'flex items-center gap-3 px-4 py-4 font-semibold text-base text-highlighted hover:bg-elevated transition-colors',
+							icon: 'w-5 h-5 shrink-0 text-muted',
+							body: 'px-4 py-2 text-sm',
+						}"
+					/>
+				</div>
+			</section>
 		</UPageBody>
 	</UPage>
 </template>

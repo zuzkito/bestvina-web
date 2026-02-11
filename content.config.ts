@@ -1,6 +1,87 @@
 import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 import { PEOPLE_PAGES_ID_VALUES, PERSON_ROLES_ID_VALUES } from "./shared/constants";
 
+const AboutCampDataSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+
+	targetPeople: z.object({
+		title: z.string(),
+		text: z.string(),
+		icon: z.string().optional(),
+	}).optional(),
+
+	bestvinka: z.object({
+		title: z.string(),
+		text: z.string(),
+		icon: z.string().optional(),
+		link: z.string().optional(),
+		linkLabel: z.string().optional(),
+	}),
+
+	activities: z.object({
+		title: z.string(),
+		text: z.string(),
+		icon: z.string().optional(),
+	}),
+
+	schedule: z.object({
+		title: z.string(),
+		text: z.string(), // This is empty string in your JSON, which is fine
+		icon: z.string(),
+		events: z.array(z.object({
+			time: z.string(),
+			title: z.string(),
+			description: z.string().optional(),
+		})),
+	}),
+
+	location: z.object({
+		title: z.string(),
+		text: z.string(),
+		icon: z.string(),
+		mapUrl: z.string().optional(),
+		staticMapImage: z.string().optional(), // This will now work correctly
+	}),
+
+	accordion: z.object({
+		title: z.string(),
+		items: z.array(
+			z.object({
+				label: z.string(),
+				content: z.string(),
+				icon: z.string().optional(),
+				defaultOpen: z.boolean().optional(),
+				disabled: z.boolean().optional(),
+				slot: z.string().optional(),
+			}),
+		),
+	}).optional(),
+
+	chemistry: z.object({
+		title: z.string(),
+		description: z.string(),
+		items: z.array(z.object({
+			title: z.string(),
+			description: z.string(),
+			icon: z.string(),
+			to: z.string().optional(),
+			label: z.string().optional(),
+		})),
+	}),
+	biology: z.object({
+		title: z.string(),
+		description: z.string(),
+		items: z.array(z.object({
+			title: z.string(),
+			description: z.string(),
+			icon: z.string(),
+			to: z.string().optional(),
+			label: z.string().optional(),
+		})),
+	}),
+});
+
 export default defineContentConfig({
 	collections: {
 		years: defineCollection({
@@ -40,34 +121,7 @@ export default defineContentConfig({
 						nickname: z.string().optional(),
 					}),
 				),
-				// fields: z.record(
-				// 	z.enum(PERSON_FIELDS_ID_VALUES),
-				// 	z.object({
-				// 		roles: z.record(
-				// 			z.enum(PERSON_ROLES_ID_VALUES),
-				// 			z.object({
-				// 				roleTitle: z.string().optional(),
-				// 				image: z.string().optional(),
-				// 				nickname: z.string().optional(),
-				// 				description: z.string().optional(),
-				// 			}),
-				// 		),
-				// 	}).optional(),
-				// ).optional(),
 			}),
-			// 	.transform((person) => {
-			// 	// if no special image supplied for a given role, use the root one
-			// 	if (person.fields.roles) {
-			// 		Object.values(person.fields).forEach((field) => {
-			// 			if (!field.roles)
-			// 				return;
-			// 			Object.values(field.roles).forEach((role) => {
-			// 				role.image = person.image;
-			// 			});
-			// 		});
-			// 	}
-			// 	return person;
-			// }),
 		}),
 
 		peoplePages: defineCollection({
@@ -91,11 +145,8 @@ export default defineContentConfig({
 
 		aboutCampPage: defineCollection({
 			type: "page",
-			source: "about_camp/*.md",
-			schema: z.object({
-				title: z.string().optional(),
-				description: z.string().optional(),
-			}),
+			source: "about_camp/*",
+			schema: AboutCampDataSchema,
 		}),
 	},
 });

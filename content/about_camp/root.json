@@ -1,0 +1,102 @@
+{
+  "title": "O soustředění",
+  "description": "Jak už asi víš, Běstvina je soustředění pro mladé chemiky a biology. I přes to, že většina Běstviny probíhá podobně pro obě vědní zaměření, konkrétní volba sekce má vliv na to, co tě tady bude čekat. Informace v druhé části této stránky jsou proto rozdělené tak, abys našel přesně to, co tě zajímá!",
+
+  "targetPeople": {
+    "title": "Pro koho",
+    "text": "Běstvina je primárně určena žákům 1. až 3. ročníku středních škol (a odpovídajícím ročníkům na gymnáziích), kteří si chtějí prohloubit své znalosti nad rámec školní výuky. Výběr účastníků probíhá na základě výsledků krajských kol Chemické či Biologické olympiády.",
+    "icon": "i-mdi-school"
+  },
+
+  "bestvinka":{
+    "title": "Pro mladší",
+    "text": "Pro přírodovědně nadané školáky ve věku do 15 let, kteří se ještě nemohou účastnit Běstviny, existuje sesterské soustředění Běstvinka. Soustředění je nabito hrami, soutěžemi, sportem a odborným přírodovědně laděným programem. Jeho délka je také dva týdny a začíná posledním dnem Běstviny.",
+    "icon": "i-material-symbols-child-care-outline",
+    "link": "https://bestvinka.vscht.cz/",
+    "linkLabel": "Více o Běstvince"
+  },
+
+  "activities": {
+    "title":"Doplňkové aktivity",
+    "text": "Běstvina není jen o učení! Máš-li v sobě sportovního ducha, můžeš se zúčastnit turnajů ve fotbale, volejbale, stolním tenise nebo i šachu. Tradičně se utkávají chemici proti biologům! Večer si můžeš zazpívat u táboráku s kytarou nebo zahrát deskové hry. A chybět nebude ani bál a diskotéka!",
+    "icon": "i-material-symbols-sports-baseball-outline"
+  },
+
+  "schedule": {
+    "title": "Typický program dne",
+    "text": "Ačkoli není každý den soustředění úplně stejný, běžný den se řídí tímto přibližným programem.",
+    "icon": "i-mdi-schedule",
+    "events": [
+      {
+        "time": "7.30",
+        "title": "Budíček"
+      },
+      {
+        "time": "8.00",
+        "title": "Snídaně"
+      },
+      {
+        "time": "9.00 – 12.00",
+        "title": "Odborný blok",
+        "description": "přednáška, laboratoř, nebo terénní výprava"
+      },
+      {
+        "time": "12.30",
+        "title": "Oběd"
+      },
+      {
+        "time": "14.00 – 17.30",
+        "title": "Odborný blok",
+        "description": "přednáška, laboratoř, nebo terénní výprava"
+      },
+      {
+        "time": "18.00",
+        "title": "Nástup",
+        "description": "asdfdfad"
+      },
+      {
+        "time": "19.00",
+        "title": "Večeře"
+      },
+      {
+        "time": "20.00",
+        "title": "Volitelný večerní program",
+        "description": "přednáška externího hosta, volnočasové experimenty v laboratoři, sportovní a deskoherní vyžití, celotáborový večerní program nebo noční hra"
+      }
+    ]
+  },
+
+  "location": {
+    "title":"Lokace",
+    "text": "Táborová základna se nachází v malebné přírodě Železných hor, nedaleko obce Seč. Ubytování je zajištěno v dřevěných chatkách a srubech. K dispozici je také menší soukromé parkoviště přímo v areálu.",
+    "icon": "i-mdi-map",
+    "mapUrl": "https://www.google.com/maps/embed/v1/place?key=AIzaSyDQSQUqQqUULFyg5w2cR_eQjUksSWnvBLk&q=ChIJX41Emh1NDEcR99WsK3h3On4%0AB%C4%9Bstvina%20155%2C%20538%2045%20B%C4%9Bstvina",
+    "staticMapImage": "/imgs/bestvina_static_map.png"
+  },
+
+  "accordion": {
+    "title": "Možná tě zajímá...",
+    "items": [
+      {
+        "label": "V kolika lidech se na chatkách/srubech bydlí?",
+        "icon": "i-lucide-house",
+        "content": "Do chatky (tzv. Áčko) se vejdou dva lidi, zatímco sruby jsou rozdělené na dvě oddělené místnosti, každá po 4 lidech."
+      },
+      {
+        "label": "Je v táborové základně dostupný mobilní signál?",
+        "icon": "i-lucide-signal",
+        "content": "Ačkoli se v posledních letech pokrytí mobilní sítí výrazně zlepšilo, stále se nedá říct, že by byla stabilní (záleží však na operátorovi). Na odeslání SMS či zavolání obvykle stačí, ale pro doom-scrolling na Instagramu a TikToku spíš ne. :)"
+      },
+      {
+        "label": "Můžu si někde dokoupit zásoby (např. sušenek nebo kafe)?",
+        "icon": "i-lucide-box",
+        "content": "Nejbližší obchůdek se nachází v obci Běstvina (cca 2 km daleko), kde se dají dokoupit zj. trvanlivé potraviny a pochutiny. O něco dál, v Třemošnici, se je supermarket Penny, kde je výběr podstatně větší – můžeš se tam vypravit pěšky třeba po večeři, nebo taky lze požádat nějakého z organizátorů, který má auto."
+      },
+      {
+        "label": "Je možné se zúčastnit pouze části soustředění?",
+        "icon": "i-lucide-calendar-days",
+        "content": "Ano, možné to je. Připrav se však na to, že tvůj zážitek nebude kompletní, protože některé aktivity nelze z organizačních důvodů přesunout."
+      }
+    ]
+  }
+}
