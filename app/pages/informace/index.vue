@@ -137,7 +137,6 @@ if (!page.value) {
 					:description="page.activities.text"
 					:icon="page.activities.icon"
 					:title="page.activities.title"
-					class="col-span-1 row-span-1"
 				/>
 			</div>
 			<section>
