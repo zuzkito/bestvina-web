@@ -58,3 +58,8 @@
     /* make the default container a bit bigger than NuxtUI normal */
     --ui-container: var(--container-9xl);
 }
+
+@theme {
+    --breakpoint-2xs: 24rem;
+    --breakpoint-xs: 32rem;
+}

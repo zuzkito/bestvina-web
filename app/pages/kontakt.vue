@@ -54,7 +54,7 @@ const contacts = ref([
 					v-for="(person, i) in contacts"
 					:key="i"
 					:ui="{
-						root: 'bg-primary-500/8 flex flex-col justify-between',
+						root: 'bg-muted flex flex-col justify-between',
 						header: 'flex flex-col items-center',
 						body: '',
 						footer: 'flex flex-col items-center gap-4',
@@ -80,14 +80,20 @@ const contacts = ref([
 					</template>
 
 					<template #default>
-						<div class="flex flex-col gap-4 text-center whitespace-pre-wrap">
-							<p class="font-">
-								{{ person.organization }}
-							</p>
-							<p class="text-muted whitespace-pre-wrap">
-								{{ person.address }}
-							</p>
-						</div>
+						<!--						<div class="flex flex-col gap-4 text-center whitespace-pre-wrap"> -->
+						<!--							<p class="font-"> -->
+						<!--								{{ person.organization }} -->
+						<!--							</p> -->
+						<!--							<p class="text-muted"> -->
+						<!--								{{ person.address }} -->
+						<!--							</p> -->
+						<!--						</div> -->
+						<CardAddressBlock
+							:name="person.organization"
+							:street="person.address"
+							class="whitespace-pre-wrap"
+							size="sm"
+						/>
 					</template>
 
 					<template #footer>

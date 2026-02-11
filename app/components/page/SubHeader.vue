@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 interface PageSubHeaderProps {
-	title: string;
+	title: string | unknown;
 	description?: string | undefined;
 	headline?: string | undefined;
 }

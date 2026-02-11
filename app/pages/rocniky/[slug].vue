@@ -11,7 +11,6 @@ const route = useRoute();
 const routePathEnglish = route.path.replace("rocniky", "years");
 
 const { data: page } = await useAsyncData(routePathEnglish, () => {
-	// return queryCollection("years").where("year", "=", route.params.slug).first();
 	return queryCollection("years").path(routePathEnglish).first();
 });
 
