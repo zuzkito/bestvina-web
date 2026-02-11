@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import useImageModal from "~/composables/useImageModal";
+import type { GalleryImage } from "~~/shared/types/image";
 
 const props = defineProps({
 	year: {
@@ -12,7 +13,7 @@ const { openImageModal } = useImageModal();
 const { data: galleryImages } = await useGalleryImages(props.year.toString());
 const isGalleryAvailable = computed(() => galleryImages?.value?.length != 0);
 
-const { randomImages, refresh } = useImageRandomizer(galleryImages.value || [], 10, true);
+const { randomImages } = useImageRandomizer(galleryImages.value || [], 10, true);
 </script>
 
 <template>
@@ -51,7 +52,7 @@ const { randomImages, refresh } = useImageRandomizer(galleryImages.value || [], 
 				<NuxtImg
 					v-slot="{ src, isLoaded, imgAttrs }"
 					:custom="true"
-					:src="item.filepath"
+					:src="(item as GalleryImage).filepath"
 					preset="thumbnailMd"
 				>
 					<!-- Show the actual image when loaded -->
@@ -60,13 +61,13 @@ const { randomImages, refresh } = useImageRandomizer(galleryImages.value || [], 
 						class="p-4"
 					>
 						<img
-							:key="item.filename"
+							:key="(item as GalleryImage).filename"
 							:alt="`náhodná fotografie z roku ${props.year}`"
 							:src="src"
 							class="w-full aspect-square object-cover rounded-md md:hover:scale-110 transition-transform"
 							loading="lazy"
 							v-bind="imgAttrs"
-							@click="openImageModal(item.filepath)"
+							@click="openImageModal((item as GalleryImage).filepath)"
 						>
 					</div>
 

@@ -5,7 +5,7 @@ definePageMeta({
 	layout: "page",
 });
 
-const contactAction: ButtonProps = {
+const _contactAction: ButtonProps = {
 	label: "Napsat mail",
 	icon: "i-lucide-mail-plus",
 	color: "secondary",

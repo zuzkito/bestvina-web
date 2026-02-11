@@ -6,31 +6,27 @@ import { PEOPLE_PAGES } from "#shared/constants";
 const props = defineProps<{
 	pageId: string;
 }>();
-const allPeoplePageId = `${PEOPLE_PAGES.ACTIVE}_vsichni`;
 
 const { getPopulatedPageData, getAllActivePeopleSortedForPage, getAllFormerPeopleSorted } = usePeopleData();
 const pageId = toRef(props, "pageId");
 
-const pageStatus = ref<"loading" | "success" | "error" | "empty">("loading");
-
-// watch(pageStatus, (value, oldValue) => {
-// 	console.log(oldValue, "->", value);
-// });
+const ALL_PEOPLE_PAGE_ID = `${PEOPLE_PAGES.ACTIVE}_vsichni`;
 
 /**
  * FETCH DATA
  * */
-const allActivePeopleSorted = ref<PeopleCollectionItemExtended[]>([]);
-const allFormerPeopleSorted = ref<PeopleCollectionItemExtended[]>([]);
-if (pageId.value === allPeoplePageId) {
-	const { data } = await getAllActivePeopleSortedForPage(allPeoplePageId);
-	allActivePeopleSorted.value = data.value;
+const { data: page } = await getPopulatedPageData(pageId);
+
+const specialPagePeople = ref<PeopleCollectionItemExtended[]>([]);
+
+if (pageId.value === ALL_PEOPLE_PAGE_ID) {
+	const { data } = await getAllActivePeopleSortedForPage(ALL_PEOPLE_PAGE_ID);
+	specialPagePeople.value = data.value;
 }
 else if (pageId.value === PEOPLE_PAGES.FORMER) {
 	const { data } = await getAllFormerPeopleSorted(PEOPLE_PAGES.FORMER);
-	allFormerPeopleSorted.value = data.value;
+	specialPagePeople.value = data.value;
 }
-const { data: page } = await getPopulatedPageData(pageId);
 
 /**
  * EXTRACT SECTIONS
@@ -41,58 +37,37 @@ interface Section {
 	people: PeopleCollectionItemExtended[];
 }
 
-const sections = computed<Section[] | undefined>(() => {
-	if (pageId.value === allPeoplePageId) {
+const sections = computed<Section[]>(() => {
+	if (pageId.value === ALL_PEOPLE_PAGE_ID || pageId.value === PEOPLE_PAGES.FORMER) {
 		return [{
 			name: "Abecední řazení",
 			showImages: true,
-			people: allActivePeopleSorted.value,
+			people: specialPagePeople.value,
 		}];
 	}
-	if (pageId.value === PEOPLE_PAGES.FORMER) {
-		return [{
-			name: "Abecední řazení",
-			showImages: true,
-			people: allFormerPeopleSorted.value,
-		}];
-	}
-	return page.value?.sections as Section[] | undefined;
+	return (page.value?.sections as Section[]) || [];
 });
-function updatePageStatus() {
-	if (!page.value) {
-		pageStatus.value = "error";
-		return;
-	}
-	if (!sections.value) {
-		pageStatus.value = "error";
-		return;
-	}
-	if (sections.value.length === 0) {
-		pageStatus.value = "empty";
-		return;
-	}
-	const peopleCount = sections.value?.filter(section => section.people?.length > 0);
-	if (peopleCount?.length === 0) {
-		pageStatus.value = "empty";
-		return;
-	}
-	pageStatus.value = "success";
-}
-watch(sections, () => updatePageStatus());
-updatePageStatus();
+
+const pageStatus = computed<"success" | "error" | "empty">(() => {
+	if (!page.value) return "error";
+
+	const currentSections = sections.value;
+	if (!currentSections?.length) return "empty";
+
+	const hasPeople = currentSections.some(s => s.people?.length > 0);
+	return hasPeople ? "success" : "empty";
+});
 
 /**
  * PAGE HELPER FUNCTIONS
  * */
-function selectPlural(forCount: number | undefined, plurals: Record<number, string>): string {
-	const defaultValue = plurals[0] || "";
-	if (forCount && forCount > 0) {
-		const key = Number(Object.keys(plurals).findLast(value => Number(value) <= forCount));
-		if (key)
-			return plurals[key] || "";
-	}
-	return defaultValue;
+function getPersonCountLabel(count: number): string {
+	if (count === 1) return "osoba";
+	if (count >= 2 && count <= 4) return "osoby";
+	return "osob";
 }
+
+const asSection = (s: unknown) => s as Section;
 </script>
 
 <template>
@@ -106,7 +81,7 @@ function selectPlural(forCount: number | undefined, plurals: Record<number, stri
 		class="w-full pb-8"
 	>
 		<div
-			v-if="section.people.length > 0"
+			v-if="asSection(section).people.length > 0"
 		>
 			<USeparator
 				v-if="index != 0"
@@ -115,24 +90,24 @@ function selectPlural(forCount: number | undefined, plurals: Record<number, stri
 			<div class="flex flex-row justify-between items-center my-4 min-h-8">
 				<div>
 					<PageSubHeader
-						:id="section.name.replace(' ', '_').toLowerCase()"
-						:title="section.name || ''"
+						:id="asSection(section).name.replace(' ', '_').toLowerCase()"
+						:title="asSection(section).name || ''"
 						class="p-0!"
 					/>
 				</div>
 				<span class="text-muted text-sm md:text-md text-right min-w-1/3">
-					celkem: {{ section.people.length }} {{ selectPlural(section.people.length, { 0: "osob", 1: "osoba", 2: "osoby", 5: "osob" }) }}
+					celkem: {{ asSection(section).people.length }} {{ getPersonCountLabel(asSection(section).people.length) }}
 				</span>
 			</div>
 			<div
 				class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(350px,1fr))] justify-items-center gap-8"
 			>
 				<PersonCard
-					v-for="(person, i) in section.people"
+					v-for="person in asSection(section).people"
 					:key="person.id"
 					:page-id="pageId"
 					:person="person"
-					:show-image="section.showImages ?? true"
+					:show-image="asSection(section).showImages ?? true"
 				/>
 			</div>
 		</div>

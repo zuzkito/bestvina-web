@@ -16,7 +16,7 @@ const { data: page } = await useAsyncData(routePathEnglish, () => {
 
 const startDate = new Date(page.value?.startDate ?? "");
 const endDate = new Date(page.value?.endDate ?? "");
-const calendarDate = shallowRef({
+const _calendarDate = shallowRef({
 	start: new CalendarDate(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
 	end: new CalendarDate(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
 });

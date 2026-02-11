@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PeopleCollectionItem } from "@nuxt/content";
 
-const props = defineProps<{
+defineProps<{
 	person: PeopleCollectionItem & {
 		roleTitle: string | undefined;
 		role: string | undefined;
