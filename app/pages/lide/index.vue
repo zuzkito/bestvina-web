@@ -88,7 +88,7 @@ if (!rootPage.value) {
 	throw createError({ statusCode: 404, statusMessage: "Stránka nenalezena!", fatal: true });
 }
 
-const pageId = computed(() => `${rootPageId}_${currentTab.value}`);
+const pageId = computed(() => `${rootPageId}/${currentTab.value}`);
 </script>
 
 <template>

@@ -10,7 +10,7 @@ const props = defineProps<{
 const { getPopulatedPageData, getAllActivePeopleSortedForPage, getAllFormerPeopleSorted } = usePeopleData();
 const pageId = toRef(props, "pageId");
 
-const ALL_PEOPLE_PAGE_ID = `${PEOPLE_PAGES.ACTIVE}_vsichni`;
+const ALL_PEOPLE_PAGE_ID = `${PEOPLE_PAGES.ACTIVE}/vsichni`;
 
 /**
  * FETCH DATA
