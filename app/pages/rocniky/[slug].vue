@@ -12,9 +12,6 @@ const { data: page } = await useAsyncData(routePathEnglish, () => {
 	return queryCollection("years").path(routePathEnglish).first();
 });
 
-const startDate = new Date(page.value?.startDate ?? "");
-const endDate = new Date(page.value?.endDate ?? "");
-
 if (!page.value || !page.value.year) {
 	throw createError({ statusCode: 404, statusMessage: "Ročník nenalezen!", fatal: true });
 }
@@ -42,13 +39,33 @@ async function getSurroundings() {
 }
 const surround = await getSurroundings();
 
-// date formatter
-const formatDate = (date: Date) => date.toLocaleString("cs-CZ", {
-	weekday: "short", day: "numeric", month: "numeric",
-});
+// date formatter -> ddd dd. MM.
+const formatDate = (dateString: string, prefix: string = "", thisYearEmptyValue: string = "bude upřesněno") => {
+	if (!dateString)
+		return (CURRENT_YEAR == page.value?.year) ? thisYearEmptyValue : "---";
+	const date = new Date(dateString ?? "");
+	if (isNaN(date.getTime()))
+		return dateString ? dateString : "---";
+	return prefix + date.toLocaleString("cs-CZ", {
+		weekday: "short", day: "numeric", month: "numeric",
+	});
+};
 
-console.log(page.value);
-console.log(page.value.price);
+const formatDateRange = (dateStringStart: string, dateStringEnd: string, thisYearEmptyValue: string = "bude upřesněno") => {
+	if (!dateStringStart || !dateStringEnd)
+		return (CURRENT_YEAR == page.value?.year) ? thisYearEmptyValue : "---";
+
+	return formatDate(dateStringStart) + " \u2013 " + formatDate(dateStringEnd);
+};
+
+// price formatter -> <number> Kč
+const formatPrice = (price: number | undefined, thisYearEmptyValue: string = "bude upřesněno") => {
+	if (!price)
+		return (CURRENT_YEAR == page.value?.year) ? thisYearEmptyValue : "---";
+	if (isNaN(price))
+		return "---";
+	return `${price} Kč`;
+};
 </script>
 
 <template>
@@ -67,22 +84,24 @@ console.log(page.value.price);
 				class="grid grid-cols-1 md:grid-cols-3 gap-6"
 			>
 				<InfoCard
+					v-if="page.term"
 					icon="i-lucide-calendar-days"
 					title="Termín konání"
 				>
 					<template #default>
 						<div class="flex flex-col gap-2">
 							<p class="text-2xl font-bold text-secondary">
-								{{ formatDate(startDate) }} &ndash; {{ formatDate(endDate) }}
+								{{ formatDateRange(page.term.startDate, page.term.endDate, "bude upřesněn") }}
 							</p>
-							<p class="text-muted text-sm">
-								Bude možnost využít autobusovou dopravu z Prahy.
+							<p class="text-muted text-sm whitespace-pre-wrap">
+								{{ page.term.note }}
 							</p>
 						</div>
 					</template>
 				</InfoCard>
 
 				<InfoCard
+					v-if="page.pricing"
 					icon="i-lucide-coins"
 					title="Cena soustředění"
 				>
@@ -90,9 +109,12 @@ console.log(page.value.price);
 						<div class="flex flex-col gap-2">
 							<div class="flex gap-2 items-center justify-between">
 								<p class="text-2xl font-bold text-secondary">
-									{{ page.price }} Kč
+									{{ formatPrice(page.pricing.price, "bude upřesněna") }}
 								</p>
-								<UPopover mode="click">
+								<UPopover
+									v-if="page.pricing.price && page.pricing.additionalInfo"
+									mode="click"
+								>
 									<UButton
 										color="neutral"
 										label="Informace"
@@ -101,20 +123,48 @@ console.log(page.value.price);
 									/>
 									<template #content>
 										<div class="p-2 max-w-72 text-sm">
-											Na některých školách je možné žádat o finanční příspěvěk pro účast žáka na soustředění. Vystavení potvrzení o účasti není problém.
+											{{ page.pricing.additionalInfo }}
 										</div>
 									</template>
 								</UPopover>
 							</div>
-							<p class="text-muted text-sm">
-								Zahrnuje ubytování, celodenní stravování i dopravu autobusem.
+							<p class="text-muted text-sm whitespace-pre-wrap">
+								{{ page.pricing.note }}
 							</p>
 						</div>
 					</template>
 				</InfoCard>
-			</div>
 
-			<ContentRenderer :value="page.body" />
+				<InfoCard
+					v-if="page.registration"
+					icon="i-mdi-document-sign"
+					title="Přihláska"
+				>
+					<template #default>
+						<div class="flex flex-col gap-2">
+							<div class="flex gap-2 items-center justify-between">
+								<p class="text-2xl font-bold text-secondary">
+									{{ formatDate(page.registration.deadline, "do ") }}
+								</p>
+								<UButton
+									v-if="page.registration.link"
+									:color="!page.registration.link ? 'neutral' : 'success'"
+									:disabled="!page.registration.link"
+									:to="page.registration.link"
+									label="Přihláška"
+									leading-icon="i-lucide-info"
+									variant="subtle"
+								/>
+							</div>
+							<p class="text-muted text-sm whitespace-pre-wrap">
+								{{ page.registration.note }}
+							</p>
+						</div>
+					</template>
+				</InfoCard>
+
+				<ContentRenderer :value="page.body" />
+			</div>
 
 			<div v-show="!isCurrentYear">
 				<USeparator icon="i-mdi-history" />
