@@ -64,7 +64,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 		],
 	}, {
 		label: "Kontakt",
-		icon: "i-lucide-box",
+		icon: "i-lucide-contact-round",
 		to: "/kontakt",
 	},
 ]);
