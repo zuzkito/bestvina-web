@@ -1,17 +1,21 @@
-import { CURRENT_YEAR, OLDEST_YEAR } from "./shared/constants";
 import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
+import { CURRENT_YEAR, OLDEST_YEAR } from "./shared/constants";
 
 const imgsRoutesPath = resolve(".prerender/imgs-routes.json");
 
-const getApiRoutes = (): string[] => {
+const getApiRoutesToPrerender = (): string[] => {
 	const apiRoutes: string[] = [];
+
 	for (let year = OLDEST_YEAR; year <= CURRENT_YEAR; year++) {
-		apiRoutes.push(`/api/images/gallery/${year}/`);
-		apiRoutes.push(`/api/images/group/${year}/`);
+		apiRoutes.push(`/api/v1/images/galerie/${year}`);
+		apiRoutes.push(`/api/v1/images/oddily/${year}`);
 	}
-	apiRoutes.push(`/api/images/gallery/years/`);
-	apiRoutes.push(`/api/images/photographers/`);
+
+	// global API endpoints
+	apiRoutes.push(`/api/v1/images/years`);
+	apiRoutes.push(`/api/v1/images/photographers`);
+
 	return apiRoutes;
 };
 
@@ -103,7 +107,7 @@ export default defineNuxtConfig({
 			crawlLinks: true,
 			routes: [
 				"/",
-				...getApiRoutes(),
+				...getApiRoutesToPrerender(),
 				...getImgRoutes(),
 			],
 		},

@@ -1,23 +1,22 @@
 <script lang="ts" setup>
 import useImageModal from "~/composables/useImageModal";
-import type { GalleryImage } from "~~/shared/types/image";
 
-const props = defineProps({
-	year: {
-		type: String,
-		required: true,
-	},
+const props = defineProps<{
+	year: string;
+}>();
+
+const { fetchImages, getRandomImages, selectedYears } = useBestvinaImages("galerie");
+watchEffect(() => {
+	selectedYears.value = [props.year];
 });
+await fetchImages(props.year);
+const randomGalleryImages = computed(() => getRandomImages(10));
 
 const { openImageModal } = useImageModal();
-const { data: galleryImages } = await useGalleryImages(props.year.toString());
-const isGalleryAvailable = computed(() => galleryImages?.value?.length != 0);
-
-const { randomImages } = useImageRandomizer(galleryImages.value || [], 10, true);
 </script>
 
 <template>
-	<div v-show="isGalleryAvailable">
+	<div v-show="randomGalleryImages.length != 0">
 		<PageSubHeader
 			description="V karuselu se zobrazuje 10 náhodných fotografií z daného roku."
 			title="Náhled galerie"
@@ -39,7 +38,7 @@ const { randomImages } = useImageRandomizer(galleryImages.value || [], 10, true)
 				delay: 5000,
 				stopOnInteraction: false,
 			}"
-			:items="randomImages"
+			:items="randomGalleryImages"
 			:ui="{
 				container: 'gap-0 p-0 ms-0',
 				item: 'basis-1/2 md:basis-1/3 xl:basis-1/4 w-fit p-0 flex flex-row gap-0 justify-center',
@@ -52,7 +51,7 @@ const { randomImages } = useImageRandomizer(galleryImages.value || [], 10, true)
 				<NuxtImg
 					v-slot="{ src, isLoaded, imgAttrs }"
 					:custom="true"
-					:src="(item as GalleryImage).filepath"
+					:src="item.path"
 					preset="thumbnailMd"
 				>
 					<!-- Show the actual image when loaded -->
@@ -61,13 +60,13 @@ const { randomImages } = useImageRandomizer(galleryImages.value || [], 10, true)
 						class="p-4"
 					>
 						<img
-							:key="(item as GalleryImage).filename"
+							:key="item.path"
 							:alt="`náhodná fotografie z roku ${props.year}`"
 							:src="src"
 							class="w-full aspect-square object-cover rounded-md md:hover:scale-110 transition-transform"
 							loading="lazy"
 							v-bind="imgAttrs"
-							@click="openImageModal((item as GalleryImage).filepath)"
+							@click="openImageModal(item.path)"
 						>
 					</div>
 

@@ -26,6 +26,7 @@
     "@types/node": "^25.0.3",
     "@vueuse/core": "^14.1.0",
     "eslint": "^9.39.2",
+    "image-size": "^2.0.2",
     "nuxt": "^4.2.2",
     "nuxt-studio": "^1.0.0-beta.3",
     "typescript": "^5.9.3",
