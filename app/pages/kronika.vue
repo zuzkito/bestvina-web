@@ -23,7 +23,11 @@ const { data: years } = await useAsyncData("/rocniky/", () => {
 					v-for="(year, index) in years"
 					:key="index"
 					:description="year.theme"
-					:image="year.coverImg"
+					:image="{
+						src: `${year.coverImg}`,
+						loading: 'lazy',
+						preset: 'thumbnailLg',
+					}"
 					:title="`Ročník ${year.year}`"
 					:to="`/rocniky/${year.year}`"
 					variant="soft"
