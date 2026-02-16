@@ -13,6 +13,7 @@ defineProps<{
 	 * - 'rows' → two rows stacked
 	 */
 	layout?: "single" | "columns" | "rows";
+	reversed?: boolean;
 }>();
 
 defineSlots<{
@@ -33,13 +34,16 @@ defineSlots<{
 			class="grid grid-cols-1 md:grid-cols-2 h-full items-stretch"
 		>
 			<!-- Text side -->
-			<div class="p-6 flex flex-col">
+			<div
+				:class="[reversed ? 'md:order-last' : 'md:order-first']"
+				class="p-6 flex flex-col"
+			>
 				<div
 					v-if="icon"
 					class="flex items-center justify-center p-2 mb-2 bg-primary/20 w-fit aspect-square rounded-xl"
 				>
 					<UIcon
-						:class="iconColorClass || 'text-primary-500'"
+						:class="iconColorClass || 'text-primary'"
 						:name="icon"
 						class="w-10 h-10"
 					/>
@@ -61,7 +65,9 @@ defineSlots<{
 			</div>
 
 			<!-- Secondary column -->
-			<slot name="secondary" />
+			<slot
+				name="secondary"
+			/>
 		</div>
 
 		<div
