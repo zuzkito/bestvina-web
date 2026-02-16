@@ -9,6 +9,7 @@ const AboutCampDataSchema = z.object({
 		title: z.string(),
 		text: z.string(),
 		icon: z.string().optional(),
+		image: z.string().optional(),
 	}).optional(),
 
 	bestvinka: z.object({
@@ -23,6 +24,7 @@ const AboutCampDataSchema = z.object({
 		title: z.string(),
 		text: z.string(),
 		icon: z.string().optional(),
+		images: z.array(z.string()),
 	}),
 
 	schedule: z.object({
@@ -42,6 +44,19 @@ const AboutCampDataSchema = z.object({
 		icon: z.string(),
 		mapUrl: z.string().optional(),
 		staticMapImage: z.string().optional(), // This will now work correctly
+	}),
+
+	camp: z.object({
+		title: z.string(),
+		text: z.string(),
+		icon: z.string(),
+		images: z.array(z.string()),
+	}),
+
+	stuff: z.object({
+		title: z.string(),
+		text: z.string(),
+		icon: z.string(),
 	}),
 
 	accordion: z.object({
@@ -82,22 +97,36 @@ const AboutCampDataSchema = z.object({
 	}),
 });
 
+const YearsPageSchema = z.object({
+	year: z.number().int(),
+	coverImg: z.string(), // path to image
+	theme: z.string(),
+
+	term: z.object({
+		startDate: z.date(),
+		endDate: z.date(),
+		note: z.string().optional(),
+	}).optional(),
+
+	pricing: z.object({
+		price: z.number().int().optional(),
+		note: z.string().optional(),
+		additionalInfo: z.string().optional(),
+	}).optional(),
+
+	registration: z.object({
+		link: z.string().optional(),
+		deadline: z.date(),
+		note: z.string().optional(),
+	}).optional(),
+});
+
 export default defineContentConfig({
 	collections: {
 		years: defineCollection({
 			source: "years/**.(yml|md)",
 			type: "page",
-			schema: z.object({
-				year: z.number().int(),
-				coverImg: z.string(), // path to image
-				theme: z.string(),
-				startDate: z.date(),
-				endDate: z.date(),
-
-				price: z.number().int().optional(),
-				registrationLink: z.string().optional(),
-				registrationEndDate: z.date(),
-			}),
+			schema: YearsPageSchema,
 		}),
 
 		people: defineCollection({

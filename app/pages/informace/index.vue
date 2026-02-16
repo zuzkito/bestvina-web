@@ -7,6 +7,9 @@ definePageMeta({
 
 const route = useRoute();
 const router = useRouter();
+const img = useImage();
+
+const placeholder = src => img(src, {}, { preset: "thumbnailXXSm" });
 
 /**
  * TABS INITIALIZATION
@@ -88,7 +91,19 @@ if (!page.value) {
 					:description="page.targetPeople.text"
 					:icon="page.targetPeople.icon"
 					:title="page.targetPeople.title"
-				/>
+					class="md:col-span-2"
+					layout="columns"
+				>
+					<template #secondary>
+						<NuxtImg
+							:placeholder="placeholder(page.targetPeople.image)"
+							:src="page.targetPeople.image"
+							class="w-full h-full object-cover md:object-[30%_0%] lg:object-center"
+							loading="lazy"
+							preset="thumbnailXLg"
+						/>
+					</template>
+				</InfoCard>
 
 				<InfoCard
 					v-if="page.bestvinka"
@@ -133,10 +148,76 @@ if (!page.value) {
 				</InfoCard>
 
 				<InfoCard
+					v-if="page.camp"
+					:description="page.camp.text"
+					:icon="page.camp.icon"
+					:reversed="true"
+					:title="page.camp.title"
+					class="md:col-span-2"
+					layout="columns"
+				>
+					<template #secondary>
+						<UCarousel
+							v-slot="{ item }"
+							:autoplay="{ delay: 4500, stopOnInteraction: false }"
+							:items="page.camp.images"
+							:ui="{
+								viewport: 'h-full',
+								container: 'h-full',
+								item: 'h-full',
+							}"
+							class="w-full"
+							loop
+						>
+							<NuxtImg
+								:placeholder="placeholder(item)"
+								:src="item"
+								class="w-full h-full object-cover"
+								loading="lazy"
+								preset="thumbnailXLg"
+							/>
+						</UCarousel>
+					</template>
+				</InfoCard>
+
+				<InfoCard
 					v-if="page.activities"
 					:description="page.activities.text"
 					:icon="page.activities.icon"
 					:title="page.activities.title"
+					class="md:col-span-2"
+					layout="columns"
+				>
+					<template #secondary>
+						<UCarousel
+							v-slot="{ item }"
+							:autoplay="{ delay: 3500, stopOnInteraction: false }"
+							:items="page.activities.images"
+							:ui="{
+								viewport: 'h-full',
+								container: 'h-full',
+								item: 'h-full',
+							}"
+							class="w-full"
+							loop
+						>
+							<NuxtImg
+								:placeholder="placeholder(item)"
+								:src="item"
+								class="w-full h-full object-cover"
+								loading="lazy"
+								preset="thumbnailXLg"
+							/>
+						</UCarousel>
+					</template>
+				</InfoCard>
+
+				<InfoCard
+					v-if="page.stuff"
+					:description="page.stuff.text"
+					:icon="page.stuff.icon"
+					:title="page.stuff.title"
+					layout="single"
 				/>
 			</div>
 			<section>

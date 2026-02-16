@@ -5,7 +5,8 @@
   "targetPeople": {
     "title": "Pro koho",
     "text": "Běstvina je primárně určena žákům 1. až 3. ročníku středních škol (a odpovídajícím ročníkům na gymnáziích), kteří si chtějí prohloubit své znalosti nad rámec školní výuky. Výběr účastníků probíhá na základě výsledků krajských kol Chemické či Biologické olympiády.",
-    "icon": "i-mdi-school"
+    "icon": "i-mdi-school",
+    "image": "/imgs/promo/chlab_discussion.jpg"
   },
 
   "bestvinka":{
@@ -18,8 +19,29 @@
 
   "activities": {
     "title":"Doplňkové aktivity",
-    "text": "Běstvina není jen o učení! Máš-li v sobě sportovního ducha, můžeš se zúčastnit turnajů ve fotbale, volejbale, stolním tenise nebo i šachu. Tradičně se utkávají chemici proti biologům! Večer si můžeš zazpívat u táboráku s kytarou nebo zahrát deskové hry. A chybět nebude ani bál a diskotéka!",
-    "icon": "i-material-symbols-sports-baseball-outline"
+    "text": "Běstvina není jen o učení! Máš-li v sobě sportovního ducha, můžeš se zúčastnit turnajů ve fotbale, volejbale, stolním tenise nebo i šachu. Tradičně se utkávají chemici proti biologům, kde nemůžou chybět dýmovnice a kopřivy! Večer si můžeš zazpívat u táboráku s kytarou nebo zahrát deskové hry. A chybět nebude ani bál a diskotéka!",
+    "icon": "i-material-symbols-sports-baseball-outline",
+    "images": [
+      "/imgs/promo/football.jpg",
+      "/imgs/promo/volleyball.jpg",
+      "/imgs/promo/bal_1.jpg",
+      "/imgs/promo/obd_1.jpg",
+      "/imgs/promo/party_2.jpg",
+      "/imgs/promo/party_3.jpg"
+    ]
+  },
+
+  "camp": {
+    "title": "Tábor",
+    "text": "asfadfa",
+    "icon": "i-mdi-campfire",
+    "images": [
+      "/imgs/camp/img1.jpg",
+      "/imgs/camp/img2.jpg",
+      "/imgs/camp/img3.jpg",
+      "/imgs/camp/img4.jpg",
+      "/imgs/camp/img5.jpg"
+    ]
   },
 
   "schedule": {
@@ -52,7 +74,7 @@
       {
         "time": "18.00",
         "title": "Nástup",
-        "description": "asdfdfad"
+        "description": "shromáždění celého tábora"
       },
       {
         "time": "19.00",
@@ -74,6 +96,12 @@
     "staticMapImage": "/imgs/bestvina_static_map.png"
   },
 
+  "stuff": {
+    "title": "Nezapomeň si zabalit...",
+    "text": "Dostatečně teplý spacák, sportovní oblečení a obuv, čelovka či jiná svítilna (ideálně, aby vydržela aspoň pár hodin svítit), sešit a psací potřeby – to je nejnutnější základ! Hodit se ti dále můžou plavky, powerbanka, pláštěnka.",
+    "icon": "i-material-symbols-travel-luggage-and-bags-outline"
+  },
+
   "accordion": {
     "title": "Možná tě zajímá...",
     "items": [
@@ -85,7 +113,7 @@
       {
         "label": "Je v táborové základně dostupný mobilní signál?",
         "icon": "i-lucide-signal",
-        "content": "Ačkoli se v posledních letech pokrytí mobilní sítí výrazně zlepšilo, stále se nedá říct, že by byla stabilní (záleží však na operátorovi). Na odeslání SMS či zavolání obvykle stačí, ale pro doom-scrolling na Instagramu a TikToku spíš ne. :)"
+        "content": "Ačkoli se v posledních letech pokrytí mobilní sítí výrazně zlepšilo, stále se nedá říct, že by bylo stabilní (záleží však na operátorovi). Na odeslání SMS či zavolání obvykle stačí, ale pro doom-scrolling na Instagramu a TikToku spíš ne. :)"
       },
       {
         "label": "Můžu si někde dokoupit zásoby (např. sušenek nebo kafe)?",
