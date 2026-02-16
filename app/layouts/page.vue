@@ -2,17 +2,15 @@
 </script>
 
 <template>
-	<div>
+	<UMain class="overflow-x-hidden">
 		<AppHeader />
 
-		<UMain>
-			<UContainer
-				class="min-h-[calc(100vh-var(--ui-header-height))]"
-			>
-				<slot />
-			</UContainer>
-		</UMain>
+		<UContainer
+			class="min-h-[calc(100vh-var(--ui-header-height))]"
+		>
+			<slot />
+		</UContainer>
 
 		<AppFooter />
-	</div>
+	</UMain>
 </template>
