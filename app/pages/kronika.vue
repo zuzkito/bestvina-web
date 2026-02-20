@@ -6,8 +6,11 @@ definePageMeta({
 });
 
 // get all years but the current one
-const { data: years } = await useAsyncData("/rocniky/", () => {
-	return queryCollection("years").where("year", "<>", CURRENT_YEAR).order("year", "DESC").all();
+const { data: years } = await useAsyncData("years-list", () => {
+	return queryCollection("years")
+		.where("year", "<>", CURRENT_YEAR)
+		.order("year", "DESC")
+		.all();
 });
 </script>
 
@@ -20,16 +23,17 @@ const { data: years } = await useAsyncData("/rocniky/", () => {
 		<UPageBody>
 			<UBlogPosts>
 				<UBlogPost
-					v-for="(year, index) in years"
+					v-for="(yearObj, index) in years"
 					:key="index"
-					:description="year.theme"
+					:description="yearObj.theme"
 					:image="{
-						src: `${year.coverImg}`,
+						src: `${yearObj.coverImg}`,
 						loading: 'lazy',
+						decoding: 'async',
 						preset: 'thumbnailLg',
 					}"
-					:title="`Ročník ${year.year}`"
-					:to="`/rocniky/${year.year}`"
+					:title="`Ročník ${yearObj.year}`"
+					:to="`/rocniky/${yearObj.year}`"
 					variant="soft"
 				/>
 			</UBlogPosts>

@@ -8,8 +8,8 @@ const getApiRoutesToPrerender = (): string[] => {
 	const apiRoutes: string[] = [];
 
 	for (let year = OLDEST_YEAR; year <= CURRENT_YEAR; year++) {
-		apiRoutes.push(`/api/v1/images/galerie/${year}`);
-		apiRoutes.push(`/api/v1/images/oddily/${year}`);
+		apiRoutes.push(`/api/v1/images/gallery/${year}`);
+		apiRoutes.push(`/api/v1/images/groups/${year}`);
 	}
 
 	// global API endpoints
