@@ -14,6 +14,7 @@ const _contactAction: ButtonProps = {
 };
 
 const img = useImage();
+const placeholder = (src: string) => img(src, {}, { preset: "thumbnailXXSm" });
 
 const contacts = ref([
 	{
@@ -62,7 +63,7 @@ const contacts = ref([
 				>
 					<template #header>
 						<NuxtImg
-							:placeholder="img(person.img, { }, { preset: 'thumbnailXXSm' })"
+							:placeholder="placeholder(person.img)"
 							:src="person.img"
 							class="object-cover rounded-full w-2/3 aspect-square"
 							preset="thumbnailMd"
