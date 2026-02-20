@@ -61,8 +61,8 @@ const goTo = (index: number) => {
 };
 
 // Throttle to prevent animation glitches when keys are held down
-const next = useThrottleFn(() => goTo(currentIndex.value + 1), 350);
-const prev = useThrottleFn(() => goTo(currentIndex.value - 1), 350);
+const next = useThrottleFn(() => goTo(currentIndex.value + 1), 100);
+const prev = useThrottleFn(() => goTo(currentIndex.value - 1), 100);
 
 const canNavigate = (direction: "left" | "right"): boolean => {
 	if (props.loop) return true;
