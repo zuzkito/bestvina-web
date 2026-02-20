@@ -43,7 +43,10 @@ function getDefaultThumbnailRoutes(images: string[]): string[] {
 
 async function writeRoutesToFile(routes: string[], outDir: string, filename: string) {
 	await mkdir(resolve(outDir), { recursive: true });
-	await writeFile(resolve(outDir, filename), JSON.stringify(routes, null, 2));
+	await writeFile(
+		resolve(outDir, filename),
+		JSON.stringify(routes.map(it => it.replace(/\\/g, "/")), null, 2),
+	);
 }
 
 function generateImgsRoutes(inDir: string, outDir: string, outFilename: string) {

@@ -9,7 +9,7 @@ const route = useRoute();
 const router = useRouter();
 const img = useImage();
 
-const placeholder = src => img(src, {}, { preset: "thumbnailXXSm" });
+const placeholder = (src: string) => img(src, {}, { preset: "thumbnailXXSm" });
 
 /**
  * TABS INITIALIZATION

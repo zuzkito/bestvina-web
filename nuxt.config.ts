@@ -92,10 +92,10 @@ export default defineNuxtConfig({
 		// Homepage pre-rendered at build time
 		"/": { prerender: true },
 		"/kronika": { prerender: true },
-		"/kronika/**": { prerender: true },
+		"/rocniky/**": { prerender: true },
 		"/lide": { prerender: true },
 		"/kontakt": { prerender: true },
-		"/galerie": { ssr: false },
+		"/galerie": { prerender: true },
 		"/informace": { prerender: true },
 		"/_studio": { ssr: true },
 		"/api/**": { cors: true, prerender: true },
