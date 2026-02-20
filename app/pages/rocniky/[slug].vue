@@ -66,6 +66,9 @@ const formatPrice = (price: number | undefined, thisYearEmptyValue: string = "bu
 		return "---";
 	return `${price} Kč`;
 };
+
+const hasGroupImages = ref(false);
+const hasGalleryPreview = ref(false);
 </script>
 
 <template>
@@ -79,7 +82,7 @@ const formatPrice = (price: number | undefined, thisYearEmptyValue: string = "bu
 			:title="`${isCurrentYear ? 'Aktuální ročník' : page.theme}`"
 		/>
 		<UPageBody>
-			<div
+			<section
 				v-show="isCurrentYear"
 				class="grid grid-cols-1 md:grid-cols-3 gap-6"
 			>
@@ -138,7 +141,7 @@ const formatPrice = (price: number | undefined, thisYearEmptyValue: string = "bu
 				<InfoCard
 					v-if="page.registration"
 					icon="i-mdi-document-sign"
-					title="Přihláska"
+					title="Přihláška"
 				>
 					<template #default>
 						<div class="flex flex-col gap-2">
@@ -164,26 +167,37 @@ const formatPrice = (price: number | undefined, thisYearEmptyValue: string = "bu
 				</InfoCard>
 
 				<ContentRenderer :value="page.body" />
-			</div>
+			</section>
 
-			<div v-show="!isCurrentYear">
+			<div v-show="hasGroupImages || hasGalleryPreview">
 				<USeparator icon="i-mdi-history" />
 
-				<!-- Gallery -->
-				<LazyGradeGalleryPreview
-					:year="page.year.toString()"
-				/>
-
 				<!-- Group Photos -->
-				<LazyGradeGroupImages
+				<GradeGroupImages
 					:year="page.year.toString()"
+					@has-content="hasGroupImages = $event"
 				/>
 
-				<!-- Surroundings -->
-				<!--				<USeparator -->
-				<!--					v-if="surround?.filter(Boolean).length" -->
-				<!--					class="mt-4 mb-8" -->
-				<!--				/> -->
+				<!-- Gallery -->
+				<GradeGalleryPreview
+					:year="page.year.toString()"
+					@has-content="hasGalleryPreview = $event"
+				/>
+			</div>
+			<div
+				v-if="!isCurrentYear && !hasGroupImages && !hasGalleryPreview"
+			>
+				<USeparator
+					class="mb-8"
+					icon="i-mdi-history"
+				/>
+				<UEmpty
+					description="Tady se časem objeví fotografie oddílů a náhled galerie..."
+					icon="i-lucide-hourglass"
+					title="Příliš brzy na pohled do minulosti!"
+				/>
+			</div>
+			<div v-if="!isCurrentYear">
 				<UContentSurround
 					:surround="surround"
 					class="mt-16"
