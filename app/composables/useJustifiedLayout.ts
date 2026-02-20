@@ -1,61 +1,73 @@
+import { computed, markRaw, type Ref } from "vue";
 import type { BestvinaImage } from "#shared/utils/imageMapper";
 
-export type LayoutItem
-	= | { type: "header"; id: string; year: string; height: number }
-		| { type: "row"; id: string; height: number; items: LayoutImage[] };
-
-export type LayoutImage = {
+export interface LayoutImage {
 	image: BestvinaImage;
 	width: number;
-};
+}
 
-// Define explicit options interface
+// LayoutItems now include the absolute `top` Y-coordinate
+export type LayoutItem
+	= | { type: "header"; id: string; year: string; height: number; top: number }
+		| { type: "row"; id: string; height: number; top: number; items: LayoutImage[] };
+
 export interface JustifiedLayoutOptions {
 	targetHeight?: number;
 	gap?: number;
 	headerHeight?: number;
+	hideHeaders?: boolean;
 }
 
-export const useJustifiedLayout = (
+export default function (
 	groupedImages: Ref<Record<string, BestvinaImage[]>>,
 	containerWidth: Ref<number>,
-	options: JustifiedLayoutOptions = {},
-) => {
+	options: MaybeRefOrGetter<JustifiedLayoutOptions> = { },
+) {
 	return computed(() => {
+		const optionsValue = toValue(options);
+
 		const layout: LayoutItem[] = [];
 		const width = containerWidth.value;
 
-		if (width <= 0) return layout;
+		if (width <= 0) return { layoutItems: [], totalHeight: 0 };
 
-		const targetHeight = options.targetHeight ?? 250;
-		const gap = options.gap ?? 8;
-		const headerHeight = options.headerHeight ?? 80;
+		const targetHeight = optionsValue.targetHeight ?? 250;
+		const gap = optionsValue.gap ?? 8;
+		const headerHeight = optionsValue.headerHeight ?? 80;
 
 		const years = Object.keys(groupedImages.value).sort((a, b) => Number(b) - Number(a));
+
+		let currentY = 0; // Running tally of the Y-coordinate
 
 		for (const year of years) {
 			const images = groupedImages.value[year];
 
-			layout.push(markRaw({ type: "header", id: `header-${year}`, year, height: headerHeight }));
+			if (!optionsValue.hideHeaders) {
+				// 1. Push Header
+				layout.push(markRaw({
+					type: "header", id: `header-${year}`, year,
+					height: headerHeight, top: currentY,
+				}));
+				currentY += headerHeight;
+			}
 
 			let currentRow: BestvinaImage[] = [];
 			let currentRowAspectRatioSum = 0;
 
 			const commitRow = (rowItems: BestvinaImage[], finalHeight: number) => {
 				layout.push(markRaw({
-					type: "row",
-					id: `row-${year}-${layout.length}`,
-					height: finalHeight,
+					type: "row", id: `row-${year}-${layout.length}`,
+					height: finalHeight, top: currentY,
 					items: rowItems.map(img => markRaw({
-						image: img,
-						width: img.aspectRatio * finalHeight,
+						image: img, width: img.aspectRatio * finalHeight,
 					})),
 				}));
+				currentY += finalHeight + gap;
 			};
-			// TODO : check ?? []
+
+			// TODO: check ?? []
 			for (const img of images ?? []) {
 				const nextAspectRatioSum = currentRowAspectRatioSum + img.aspectRatio;
-				// Math perfectly accounts for the horizontal gap pixels
 				const widthWithImg = (nextAspectRatioSum * targetHeight) + (currentRow.length * gap);
 
 				if (widthWithImg < width) {
@@ -85,6 +97,7 @@ export const useJustifiedLayout = (
 				}
 			}
 
+			// 3. Commit Final Row
 			if (currentRow.length > 0) {
 				const naturalWidth = (currentRowAspectRatioSum * targetHeight) + ((currentRow.length - 1) * gap);
 				if (naturalWidth > width * 0.75) {
@@ -95,8 +108,12 @@ export const useJustifiedLayout = (
 					commitRow(currentRow, targetHeight);
 				}
 			}
+
+			if (!optionsValue.hideHeaders) {
+				currentY += 24;
+			}
 		}
 
-		return layout;
+		return { layoutItems: layout, totalHeight: currentY };
 	});
 };
