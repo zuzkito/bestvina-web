@@ -23,6 +23,24 @@ useHead({
 	},
 	title: "Běstvina",
 });
+
+// IMAGE DETAIL GLOBAL OPENER
+const { checkGlobalUrl, isModalOpen } = useImageDetail();
+const route = useRoute();
+
+onMounted(() => {
+	checkGlobalUrl();
+});
+
+watch(
+	() => route.query.image,
+	(newVal, oldVal) => {
+		// Only trigger globally if the modal isn't already handling the sequence
+		if (newVal && !oldVal && !isModalOpen.value) {
+			checkGlobalUrl();
+		}
+	},
+);
 </script>
 
 <template>
@@ -34,6 +52,7 @@ useHead({
 			color="var(--ui-primary)"
 		/>
 		<UBanner
+			id="in-development"
 			:ui="{
 				root: 'py-2',
 				title: 'line-clamp-3 whitespace-normal',
