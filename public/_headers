@@ -4,3 +4,5 @@
   Content-Type: application/json
 /api/v1/images/photograhers
   Content-Type: application/json
+/api/v1/images/years
+  Content-Type: application/json
