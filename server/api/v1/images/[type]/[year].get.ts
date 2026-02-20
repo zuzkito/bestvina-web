@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
 	const type = getRouterParam(event, "type");
 	const year = getRouterParam(event, "year");
 
-	if (!type || !type.match(/^(galerie|oddily)$/)) {
+	if (!type || !type.match(/^(gallery|groups)$/)) {
 		throw createError({ statusCode: 400, statusMessage: "Invalid type parameter" });
 	}
 	if (!year || !year.match(/^\d{4}$/)) {

@@ -2,7 +2,7 @@ import type { Photographer } from "#shared/types/photographer";
 
 /*
 * Unsorted list of photographers with their shortcuts.
-* To get a sorted list, use server API "/api/images/photographers/"
+* To get a sorted list, use server API "/api/v1/images/photographers"
 * */
 export const IMAGE_AUTHORS: Photographer[] = [
 	{
@@ -15,19 +15,22 @@ export const IMAGE_AUTHORS: Photographer[] = [
 		name: "Jirka Štipl",
 		shortcut: "jst",
 	}, {
-		name: "Zuzka Chumová (Kodulka)",
+		name: "Zuzka Chumová",
+		nickname: "Kodulka",
 		shortcut: "kod",
 	}, {
 		name: "Lenka Špidlenová",
 		shortcut: "les",
 	}, {
-		name: "Luděk Míka (Lumec)",
+		name: "Luděk Míka",
+		nickname: "Lumec",
 		shortcut: "lum",
 	}, {
 		name: "Michal. H. Kolář",
 		shortcut: "mhk",
 	}, {
-		name: "Jan Martínek (Mumínek)",
+		name: "Jan Martínek",
+		nickname: "Mumínek",
 		shortcut: "mum",
 	}, {
 		name: "Tatiana Nemirovich",

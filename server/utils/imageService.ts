@@ -1,16 +1,19 @@
-import { readdir, readFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { join, resolve } from "path";
 import sizeOf from "image-size";
 import type { BestvinaImage, MinifiedBestvinaImage } from "#shared/utils/imageMapper";
 import { IMAGE_EXTENSIONS } from "#shared/constants";
+import { readdirSync, readFileSync } from "node:fs";
 
 const VALID_EXTENSIONS_REGEX = new RegExp(`\\.(${IMAGE_EXTENSIONS.join("|")})$`, "i");
 
+// TODO: might require further improvement to use async fs
+// for now, this fixes the EMFILE (too many open) during prerender
+
 /**
- * Logic to determine group titles for the 'oddily' section.
+ * Logic to determine group titles for the 'groups' section.
  */
 export const getGroupTitle = (filename: string, year: number): string | null => {
-	// TODO: implement this
+	// TODO: implement group subtype logic
 
 	let field: string | null = null;
 	const group: string | null = null; // Placeholder for future C1/B2 logic
@@ -21,7 +24,7 @@ export const getGroupTitle = (filename: string, year: number): string | null => 
 		else if (lowerFile.includes("bi")) field = "Biologie";
 	}
 
-	// Based on requirements, return null for 2024 specifically
+	// TODO: implement logic for further years
 	if (year === 2024) return null;
 
 	if (field && group) return `${field} ${group}`;
@@ -68,7 +71,7 @@ export const processImageFile = async (
 	const numericYear = Number(year);
 
 	// Read into Buffer for image-size v2.0 compatibility
-	const buffer = await readFile(filePath);
+	const buffer = readFileSync(filePath);
 	const dimensions = sizeOf(buffer);
 
 	const w = dimensions.width || 1;
@@ -76,14 +79,13 @@ export const processImageFile = async (
 
 	// Build the full object using the shared interface
 	const fullImage: BestvinaImage = {
-		path: `/imgs/rocniky/${year}/${type}/${file}`,
+		path: `/imgs/years/${year}/${type}/${file}`,
 		year: year,
 		width: w,
 		height: h,
 		aspectRatio: Number((w / h).toFixed(2)),
-		// Map author to full object if found (handled by decode later, but encoded here as shortcut)
 		author: IMAGE_AUTHORS.find(a => a.shortcut === extractAuthorShortcut(file, numericYear)) || null,
-		title: type === "oddily" ? getGroupTitle(file, numericYear) : null,
+		title: type === "groups" ? getGroupTitle(file, numericYear) : null,
 	};
 
 	return encodeBestvinaImage(fullImage);
@@ -91,18 +93,23 @@ export const processImageFile = async (
 
 /**
  * Orchestrates the reading of an entire directory for a given year and type.
+ * Processes files sequentially to avoid file descriptor exhaustion.
  */
 export const getImagesForYear = async (year: string, type: string): Promise<MinifiedBestvinaImage[]> => {
-	const baseDir = resolve(process.cwd(), "public", "imgs", "rocniky", year, type);
+	const baseDir = resolve(process.cwd(), "public", "imgs", "years", year, type);
 
 	try {
-		const files = await readdir(baseDir);
+		const files = readdirSync(baseDir);
 		const validFiles = files.filter(file => VALID_EXTENSIONS_REGEX.test(file));
 
-		// Concurrently process all images in the folder
-		return await Promise.all(
-			validFiles.map(file => processImageFile(baseDir, file, year, type)),
-		);
+		// Process files sequentially to avoid EMFILE errors
+		const results: MinifiedBestvinaImage[] = [];
+		for (const file of validFiles) {
+			const result = await processImageFile(baseDir, file, year, type);
+			results.push(result);
+		}
+
+		return results;
 	}
 	catch (error) {
 		console.log(error);
