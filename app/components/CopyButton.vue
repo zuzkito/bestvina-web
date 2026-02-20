@@ -6,9 +6,10 @@ interface CopyButtonProps {
 	size?: "sm" | "md" | "lg" | "xl";
 	variant?: "link" | "solid" | "outline" | "soft" | "subtle" | "ghost";
 	tooltip?: string;
+	icon?: "copy" | "share" | "link";
 }
 
-const _props = defineProps<CopyButtonProps>();
+const props = defineProps<CopyButtonProps>();
 
 const { copy, copied } = useClipboard();
 
@@ -22,6 +23,28 @@ function showToast() {
 		color: "success",
 	});
 }
+
+function triggerCopy() {
+	copy(props.value);
+	showToast();
+}
+
+defineExpose({
+	triggerCopy,
+});
+
+const getIcon = () => {
+	switch (props.icon) {
+		case "share":
+			return "i-lucide-share";
+
+		case "link":
+			return "i-lucide-link";
+
+		default:
+			return copied ? "i-lucide-copy-check" : "i-lucide-copy";
+	}
+};
 </script>
 
 <template>
@@ -32,7 +55,7 @@ function showToast() {
 		<UButton
 			:aria-label="tooltip ?? 'Zkopírovat do schránky'"
 			:color="copied ? 'success' : 'neutral'"
-			:icon="copied ? 'i-lucide-copy-check' : 'i-lucide-copy'"
+			:icon="getIcon()"
 			:size="size ?? 'sm'"
 			:variant="variant ?? 'link'"
 			@click="copy(value);showToast()"
