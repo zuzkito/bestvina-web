@@ -62,33 +62,35 @@ const {
 					</UFormField>
 				</div>
 
-				<div
-					v-if="pending"
-					class="w-full h-full flex flex-row justify-center items-center my-16 lg:col-span-3"
-				>
-					<UIcon
-						class="text-muted"
-						name="i-svg-spinners-bars-scale-middle"
-						size="48"
-					/>
-				</div>
-
-				<div
-					v-else
-					class="px-4 lg:col-span-3"
-				>
-					<JustifiedImageLayout
-						:grouped-images="filteredGroupedImages"
+				<ClientOnly>
+					<div
+						v-if="pending"
+						class="w-full h-full flex flex-row justify-center items-center my-16 lg:col-span-3"
 					>
-						<template #empty>
-							<UEmpty
-								description="Těmto filtrům neodpovídají žádné fotky. Zkus některé filtry odebrat!"
-								icon="i-mdi-filter-variant-remove"
-								title="Kde nic, tu nic..."
-							/>
-						</template>
-					</JustifiedImageLayout>
-				</div>
+						<UIcon
+							class="text-muted"
+							name="i-svg-spinners-bars-scale-middle"
+							size="48"
+						/>
+					</div>
+
+					<div
+						v-else
+						class="px-4 lg:col-span-3"
+					>
+						<JustifiedImageLayout
+							:grouped-images="filteredGroupedImages"
+						>
+							<template #empty>
+								<UEmpty
+									description="Těmto filtrům neodpovídají žádné fotky. Zkus některé filtry odebrat!"
+									icon="i-mdi-filter-variant-remove"
+									title="Kde nic, tu nic..."
+								/>
+							</template>
+						</JustifiedImageLayout>
+					</div>
+				</ClientOnly>
 			</div>
 		</UPageBody>
 	</UPage>
