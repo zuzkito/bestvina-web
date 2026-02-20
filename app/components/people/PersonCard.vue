@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import type { PeopleCollectionItem } from "@nuxt/content";
 
+const img = useImage();
+const placeholder = (src: string) => img(src, {}, { preset: "thumbnailXXSm" });
+
 defineProps<{
 	person: PeopleCollectionItem & {
 		roleTitle: string | undefined;
@@ -28,6 +31,7 @@ defineProps<{
 			>
 				<NuxtImg
 					v-if="person.image"
+					:placeholder="placeholder(person.image)"
 					:src="person.image"
 					class="object-cover w-full aspect-3/2"
 					preset="thumbnailLg"
