@@ -1,5 +1,5 @@
 ---
-name: "Jan Matínek"
+name: "Jan Martinek"
 image: "/imgs/cat3.jpg"
 nickname: "Mumínek"
 description: |
