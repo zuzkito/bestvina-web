@@ -7,7 +7,7 @@ const emit = defineEmits<{
 	(e: "hasContent", value: boolean): void;
 }>();
 
-const { filteredGroupedImages, selectedYears } = useBestvinaImages("groups", props.year);
+const { filteredGroupedImages, selectedYears, pending } = useBestvinaImages("groups", props.year);
 
 watch(
 	() => props.year,
@@ -21,9 +21,11 @@ const imagesAvailable = computed(() => {
 	return Object.values(filteredGroupedImages.value).length !== 0;
 });
 
-watch(imagesAvailable, (val) => {
-	emit("hasContent", val);
-}, { immediate: true });
+watch(pending, (isPending) => {
+	if (!isPending) {
+		emit("hasContent", imagesAvailable.value);
+	}
+});
 </script>
 
 <template>

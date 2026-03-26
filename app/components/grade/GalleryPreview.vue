@@ -15,7 +15,7 @@ const img = useImage();
 const placeholder = (src: string) => img(src, {}, { preset: "thumbnailXXSm" });
 
 // Data fetching
-const { getRandomImages, selectedYears } = useBestvinaImages("gallery", props.year);
+const { getRandomImages, selectedYears, pending } = useBestvinaImages("gallery", props.year);
 
 // Explicitly sync the year prop to the composable's state
 watch(
@@ -29,9 +29,11 @@ watch(
 const randomGalleryImages = computed(() => getRandomImages(10));
 const imagesAvailable = computed(() => randomGalleryImages.value?.length > 0);
 
-watch(imagesAvailable, (val) => {
-	emit("hasContent", val);
-}, { immediate: true });
+watch(pending, (isPending) => {
+	if (!isPending) {
+		emit("hasContent", imagesAvailable.value);
+	}
+});
 
 // Actions
 const openModal = (src: string) => {

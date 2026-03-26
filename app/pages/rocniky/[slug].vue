@@ -67,8 +67,8 @@ const formatPrice = (price: number | undefined, thisYearEmptyValue: string = "bu
 	return `${price} Kč`;
 };
 
-const hasGroupImages = ref(false);
-const hasGalleryPreview = ref(false);
+const hasGroupImages = ref(true);
+const hasGalleryPreview = ref(true);
 </script>
 
 <template>
@@ -175,13 +175,13 @@ const hasGalleryPreview = ref(false);
 				<!-- Group Photos -->
 				<GradeGroupImages
 					:year="page.year.toString()"
-					@has-content="hasGroupImages = $event"
+					@has-content="(val) => { hasGroupImages = val }"
 				/>
 
 				<!-- Gallery -->
 				<GradeGalleryPreview
 					:year="page.year.toString()"
-					@has-content="hasGalleryPreview = $event"
+					@has-content="(val) => { hasGalleryPreview = val }"
 				/>
 			</div>
 			<div
