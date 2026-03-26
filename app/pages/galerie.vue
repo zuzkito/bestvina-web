@@ -60,6 +60,17 @@ const {
 							value-key="shortcut"
 						/>
 					</UFormField>
+
+					<USeparator />
+
+					<UButton
+						class="w-fit"
+						color="neutral"
+						label="Zrušit filtry"
+						leading-icon="i-proicons-filter-cancel"
+						variant="subtle"
+						@click="selectedAuthors = []; selectedYears = []"
+					/>
 				</div>
 
 				<ClientOnly>
