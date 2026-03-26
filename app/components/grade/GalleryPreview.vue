@@ -70,7 +70,7 @@ const openModal = (src: string) => {
 			:items="randomGalleryImages"
 			:ui="{
 				container: 'gap-0 p-0 ms-0',
-				item: 'basis-1/3 lg:basis-1/5 w-fit p-0 flex flex-row gap-0 justify-center',
+				item: 'basis-1/2 md:basis-1/3 xl:basis-1/5 w-fit p-0 flex flex-row gap-0 justify-center',
 			}"
 			class="w-full mt-8 mb-16"
 			dots
