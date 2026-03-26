@@ -13,7 +13,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "deployTest": "wrangler pages deploy .output/public --project-name bestvina-test"
+    "deploy-test": "wrangler pages deploy .output/public --project-name bestvina-test",
+    "publish-test": "bun run generate && bun run deploy-test"
   },
   "dependencies": {
     "@nuxt/content": "^3.10.0",
