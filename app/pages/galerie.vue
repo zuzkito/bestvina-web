@@ -18,7 +18,7 @@ const {
 	<UPage>
 		<UPageHeader title="Galerie" />
 		<UPageBody>
-			<div class="grid grid-cols-1 lg:grid-cols-4">
+			<div class="grid grid-cols-1 lg:grid-cols-6">
 				<div
 					ref="sidebar"
 					class="lg:sticky lg:top-(--ui-header-height) h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 p-4"
@@ -76,7 +76,7 @@ const {
 
 					<div
 						v-else
-						class="px-4 lg:col-span-3"
+						class="px-4 lg:col-span-5"
 					>
 						<JustifiedImageLayout
 							:grouped-images="filteredGroupedImages"
