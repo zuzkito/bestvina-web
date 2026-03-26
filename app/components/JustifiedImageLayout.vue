@@ -39,7 +39,6 @@ const groupedImagesRef = computed(() => props.groupedImages);
 const responsiveTargetHeight = computed(() => {
 	return containerWidth.value < 960 ? props.targetHeightSmall : props.targetHeight;
 });
-watch(responsiveTargetHeight, val => console.log(val));
 
 // Build layout options from props
 const layoutOptions = computed((): JustifiedLayoutOptions => ({
