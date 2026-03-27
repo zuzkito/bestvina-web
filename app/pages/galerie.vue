@@ -76,7 +76,7 @@ const {
 				<ClientOnly>
 					<div
 						v-if="pending"
-						class="w-full h-full flex flex-row justify-center items-center my-16 lg:col-span-3"
+						class="w-full h-full flex flex-row justify-center items-center my-16 lg:col-span-5"
 					>
 						<UIcon
 							class="text-muted"
