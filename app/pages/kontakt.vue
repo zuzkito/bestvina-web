@@ -59,7 +59,9 @@ const contacts = ref<ContactInterface[]>([
 			title="Kontakt"
 		/>
 		<UPageBody>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full justify-items-stretch items-stretch gap-8 lg:gap-16">
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full justify-items-stretch items-stretch gap-8 lg:gap-16"
+			>
 				<UCard
 					v-for="(person, i) in contacts"
 					:key="i"
@@ -71,21 +73,23 @@ const contacts = ref<ContactInterface[]>([
 					}"
 				>
 					<template #header>
-						<NuxtImg
-							v-if="person.img"
-							:placeholder="placeholder(person.img)"
-							:src="person.img"
-							class="object-cover rounded-full w-2/3 aspect-square"
-							preset="thumbnailMd"
-						/>
-						<div
-							v-else
-							class="object-cover rounded-full w-2/3 aspect-square bg-primary/20 flex justify-center items-center"
-						>
-							<UIcon
-								:name="person.icon ? person.icon : 'i-lucide-user'"
-								size="128"
+						<div class="rounded-full w-2/3 aspect-square bg-secondary flex items-center justify-center p-0.5">
+							<NuxtImg
+								v-if="person.img"
+								:placeholder="placeholder(person.img)"
+								:src="person.img"
+								class="w-full object-cover rounded-full aspect-square"
+								preset="thumbnailMd"
 							/>
+							<div
+								v-else
+								class="w-full object-cover rounded-full aspect-square bg-muted/90 flex justify-center items-center"
+							>
+								<UIcon
+									:name="person.icon ? person.icon : 'i-lucide-user'"
+									size="128"
+								/>
+							</div>
 						</div>
 
 						<p
