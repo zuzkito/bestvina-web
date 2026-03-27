@@ -52,7 +52,7 @@ defineProps<{
 				</p>
 				<p
 					v-if="person.roleTitle"
-					class="text-muted"
+					class="text-muted lowercase"
 				>
 					{{ person.roleTitle }}
 				</p>

@@ -16,12 +16,22 @@ const _contactAction: ButtonProps = {
 const img = useImage();
 const placeholder = (src: string) => img(src, {}, { preset: "thumbnailXXSm" });
 
-const contacts = ref([
+interface ContactInterface {
+	name: string;
+	role: string;
+	organization: string;
+	address?: string;
+	img?: string;
+	icon?: string;
+	email: string;
+}
+
+const contacts = ref<ContactInterface[]>([
 	{
 		name: "Jan Kotek",
 		role: "hlavní vedoucí",
 		organization: "Katedra anorganické chemie,\nPřírodovědecká fakulta Univerzita Karlova",
-		address: "Hlavova 2030/8\n128 00, Praha 2",
+		// address: "Hlavova 2030/8\n128 00, Praha 2",
 		img: "imgs/people/contacts/kotek_jan.jpg",
 		email: "modrej@natur.cuni.cz",
 	},
@@ -29,17 +39,16 @@ const contacts = ref([
 		name: "Zuzana Kotková",
 		role: "tajemnice Chemické olympiády",
 		organization: "Ústav učitelství chemie a humanitních věd,\nVysoká škola chemicko-technologická v Praze",
-		address: "Technická 5\n168 28, Praha 6",
+		// address: "Technická 5\n168 28, Praha 6",
 		img: "imgs/people/contacts/kotkova_zuzana.jpg",
 		email: "Zuzana.Kotkova@vscht.cz",
 	},
 	{
-		name: "Lenka Libusová",
-		role: "tajemnice Biologické olympiády",
-		organization: "Katedra buněčné biologie,\nPřírodovědecká fakulta Univerzita Karlova",
-		address: "Viničná 7\n128 04, Praha 2",
-		img: "imgs/people/contacts/libusova_lenka.jpg",
-		email: "lenka.libusova@natur.cuni.cz",
+		name: "Petr Šíma",
+		role: "místopředseda Biologické olympiády",
+		organization: "Gymnázium Botičská, Praha",
+		icon: "i-material-symbols-microbiology-outline",
+		email: "sima@gybot.cz",
 	},
 ]);
 </script>
@@ -50,7 +59,9 @@ const contacts = ref([
 			title="Kontakt"
 		/>
 		<UPageBody>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full justify-items-stretch items-stretch gap-8 lg:gap-16">
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full justify-items-stretch items-stretch gap-8 lg:gap-16"
+			>
 				<UCard
 					v-for="(person, i) in contacts"
 					:key="i"
@@ -62,12 +73,25 @@ const contacts = ref([
 					}"
 				>
 					<template #header>
-						<NuxtImg
-							:placeholder="placeholder(person.img)"
-							:src="person.img"
-							class="object-cover rounded-full w-2/3 aspect-square"
-							preset="thumbnailMd"
-						/>
+						<div class="rounded-full w-2/3 aspect-square bg-secondary flex items-center justify-center p-0.5">
+							<NuxtImg
+								v-if="person.img"
+								:placeholder="placeholder(person.img)"
+								:src="person.img"
+								class="w-full object-cover rounded-full aspect-square"
+								preset="thumbnailMd"
+							/>
+							<div
+								v-else
+								class="w-full object-cover rounded-full aspect-square bg-muted/90 flex justify-center items-center"
+							>
+								<UIcon
+									:name="person.icon ? person.icon : 'i-lucide-user'"
+									size="128"
+								/>
+							</div>
+						</div>
+
 						<p
 							class="mt-8 text-highlighted text-2xl font-bold"
 						>

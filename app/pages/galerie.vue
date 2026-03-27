@@ -18,7 +18,7 @@ const {
 	<UPage>
 		<UPageHeader title="Galerie" />
 		<UPageBody>
-			<div class="grid grid-cols-1 lg:grid-cols-4">
+			<div class="grid grid-cols-1 lg:grid-cols-6">
 				<div
 					ref="sidebar"
 					class="lg:sticky lg:top-(--ui-header-height) h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4 p-4"
@@ -60,12 +60,23 @@ const {
 							value-key="shortcut"
 						/>
 					</UFormField>
+
+					<USeparator />
+
+					<UButton
+						class="w-fit"
+						color="neutral"
+						label="Zrušit filtry"
+						leading-icon="i-proicons-filter-cancel"
+						variant="subtle"
+						@click="selectedAuthors = []; selectedYears = []"
+					/>
 				</div>
 
 				<ClientOnly>
 					<div
 						v-if="pending"
-						class="w-full h-full flex flex-row justify-center items-center my-16 lg:col-span-3"
+						class="w-full h-full flex flex-row justify-center items-center my-16 lg:col-span-5"
 					>
 						<UIcon
 							class="text-muted"
@@ -76,7 +87,7 @@ const {
 
 					<div
 						v-else
-						class="px-4 lg:col-span-3"
+						class="px-4 lg:col-span-5"
 					>
 						<JustifiedImageLayout
 							:grouped-images="filteredGroupedImages"

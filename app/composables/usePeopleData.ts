@@ -16,7 +16,8 @@ export default function () {
 		if (!person.pages)
 			return person;
 
-		const selectedPagePersonData = person.pages?.[pageId];
+		const pageIdInRecord = pageId.replace("/", "_");
+		const selectedPagePersonData = person.pages?.[pageIdInRecord];
 
 		if (selectedPagePersonData) {
 			person.name = selectedPagePersonData.name || person.name;
