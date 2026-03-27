@@ -12,6 +12,8 @@ const props = defineProps<{
 
 const emit = defineEmits(["close"]);
 
+const url = useRequestURL();
+
 // State
 const currentSrc = ref(props.initialSrc);
 const transitionName = ref("slide-left");
@@ -166,7 +168,7 @@ defineShortcuts({
 
 						<CopyButton
 							ref="copyButtonRef"
-							:value="useRoute().path"
+							:value="url.toString()"
 							icon="link"
 							size="xl"
 							variant="ghost"
@@ -260,13 +262,12 @@ defineShortcuts({
 								:key="i"
 								:ref="(el) => { if (el) thumbRefs[i] = el as HTMLElement }"
 								:class="currentSrc === imgSrc ? 'ring-2 ring-secondary scale-105 opacity-100' : 'opacity-50 hover:opacity-100'"
-								class="relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden transition-all duration-200"
+								class="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden transition-all duration-200"
 								@click="goTo(i)"
 							>
 								<USkeleton
 									v-if="!loadedThumbnails.has(imgSrc)"
-									:ui="{ rounded: 'rounded-md' }"
-									class="absolute inset-0 w-full h-full"
+									class="absolute inset-0 w-full h-full rounded-md"
 								/>
 
 								<NuxtImg
