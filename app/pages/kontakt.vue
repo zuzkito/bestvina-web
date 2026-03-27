@@ -16,7 +16,17 @@ const _contactAction: ButtonProps = {
 const img = useImage();
 const placeholder = (src: string) => img(src, {}, { preset: "thumbnailXXSm" });
 
-const contacts = ref([
+interface ContactInterface {
+	name: string;
+	role: string;
+	organization: string;
+	address?: string;
+	img?: string;
+	icon?: string;
+	email: string;
+}
+
+const contacts = ref<ContactInterface[]>([
 	{
 		name: "Jan Kotek",
 		role: "hlavní vedoucí",
